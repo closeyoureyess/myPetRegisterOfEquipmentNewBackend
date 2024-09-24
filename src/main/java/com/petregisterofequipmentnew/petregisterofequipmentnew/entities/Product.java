@@ -16,7 +16,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @Column(name = "name_type_technic")
     @Enumerated(EnumType.STRING)
     private TypeEquipmentEnum nameTypeTechnic;

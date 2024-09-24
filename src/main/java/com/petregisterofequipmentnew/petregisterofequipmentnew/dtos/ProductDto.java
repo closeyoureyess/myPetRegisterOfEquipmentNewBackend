@@ -13,7 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class ProductDto implements Serializable {
 
-    private Integer id;
+    private Long id;
     private TypeEquipmentEnum nameTypeTechnic;
     private String manufacturerCountry;
     private String manufacturerCompany;

@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class AttributesDto {
 
-    private Integer id;
+    private Long id;
     private String nameDevice;
     private Integer serialNumber;
     private ColorEquipment color;

@@ -2,8 +2,10 @@ package com.petregisterofequipmentnew.petregisterofequipmentnew.services;
 
 import com.petregisterofequipmentnew.petregisterofequipmentnew.dtos.AttributesDto;
 
+import java.util.Optional;
+
 public interface AttributesService {
 
-    AttributesDto verifyThatAttributes(AttributesDto attributesDto);
+    Optional<AttributesDto> verifyThatAttributes(AttributesDto attributesDto);
 
 }

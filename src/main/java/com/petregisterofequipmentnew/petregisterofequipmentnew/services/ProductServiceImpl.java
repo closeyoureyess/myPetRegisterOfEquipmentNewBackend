@@ -20,11 +20,13 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
     @Autowired
     private ProductMapper productMapper;
+    @Autowired
+    private AttributesService attributesService;
 
     @Override
     public ProductDto createPosition(ProductDto modelDto) throws MainException {
         if (modelDto.getAttributesDto() != null){
-
+            attributesService.verifyThatAttributes(modelDto.getAttributesDto());
         }
         productRepository.save(productMapper.convertDtoToProduct(modelDto));
         return modelDto;
