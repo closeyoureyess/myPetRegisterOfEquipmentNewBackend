@@ -22,7 +22,6 @@ public class AttributesMapperImpl implements AttributesMapper {
     @Override
     public Attributes convertDtoToAttributes(@NotNull AttributesDto attributesDto) {
         Attributes attributes = new Attributes();
-        // Маппинг простых полей
         if (attributesDto.getId() != null) {
             attributes.setId(attributesDto.getId());
         }
@@ -53,13 +52,39 @@ public class AttributesMapperImpl implements AttributesMapper {
                     )
             );
         }
+        if (attributesDto.getCountsDoor() != null) {
+            attributes.setCountsDoor(attributesDto.getCountsDoor());
+        }
+        if (attributesDto.getTypeCompressor() != null) {
+            attributes.setTypeCompressor(attributesDto.getTypeCompressor());
+        }
+        if (attributesDto.getSizeDustCollect() != null) {
+            attributes.setSizeDustCollect(attributesDto.getSizeDustCollect());
+        }
+        if (attributesDto.getCountsRegime() != null) {
+            attributes.setCountsRegime(attributesDto.getCountsRegime());
+        }
+        if (attributesDto.getTypeProcessor() != null) {
+            attributes.setTypeProcessor(attributesDto.getTypeProcessor());
+        }
+        if (attributesDto.getMemoryPhone() != null) {
+            attributes.setMemoryPhone(attributesDto.getMemoryPhone());
+        }
+        if (attributesDto.getCountsSnaps() != null) {
+            attributes.setCountsSnaps(attributesDto.getCountsSnaps());
+        }
+        if (attributesDto.getTechnology() != null) {
+            attributes.setTechnology(attributesDto.getTechnology());
+        }
+        if (attributesDto.getServiceFlag() != null) {
+            attributes.setServiceFlag(attributesDto.getServiceFlag());
+        }
         return attributes;
     }
 
     @Override
     public AttributesDto convertAttributesToDto(@NotNull Attributes attributes) {
         AttributesDto attributesDto = new AttributesDto();
-
         if (attributes.getId() != null) {
             attributesDto.setId(attributes.getId());
         }
@@ -90,7 +115,33 @@ public class AttributesMapperImpl implements AttributesMapper {
                     )
             );
         }
-
+        if (attributes.getCountsDoor() != null) {
+            attributesDto.setCountsDoor(attributes.getCountsDoor());
+        }
+        if (attributes.getTypeCompressor() != null) {
+            attributesDto.setTypeCompressor(attributes.getTypeCompressor());
+        }
+        if (attributes.getSizeDustCollect() != null) {
+            attributesDto.setSizeDustCollect(attributes.getSizeDustCollect());
+        }
+        if (attributes.getCountsRegime() != null) {
+            attributesDto.setCountsRegime(attributes.getCountsRegime());
+        }
+        if (attributes.getTypeProcessor() != null) {
+            attributesDto.setTypeProcessor(attributes.getTypeProcessor());
+        }
+        if (attributes.getMemoryPhone() != null) {
+            attributesDto.setMemoryPhone(attributes.getMemoryPhone());
+        }
+        if (attributes.getCountsSnaps() != null) {
+            attributesDto.setCountsSnaps(attributes.getCountsSnaps());
+        }
+        if (attributes.getTechnology() != null) {
+            attributesDto.setTechnology(attributes.getTechnology());
+        }
+        if (attributes.getServiceFlag() != null) {
+            attributesDto.setServiceFlag(attributes.getServiceFlag());
+        }
         return attributesDto;
     }
 

@@ -19,8 +19,18 @@ public class AttributesDto {
     private ColorEquipment color;
     private Integer size;
     private Integer price;
-    private String category;
     private Boolean isAvailabilityProducts;
     private List<ProductDto> productDtoList;
+
+    private Integer countsDoor;
+    private String typeCompressor;
+    private Integer sizeDustCollect;
+    private Integer countsRegime;
+    private String typeProcessor;
+    private String category;
+    private Integer memoryPhone;
+    private Integer countsSnaps;
+    private String technology;
+    private Integer serviceFlag;
 
 }

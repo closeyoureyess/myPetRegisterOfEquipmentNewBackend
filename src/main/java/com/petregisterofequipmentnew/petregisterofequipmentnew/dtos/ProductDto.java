@@ -21,15 +21,4 @@ public class ProductDto implements Serializable {
     private Boolean isPossibilityInstallments;
     private AttributesDto attributesDto;
 
-    private Integer countsDoor;
-    private String typeCompressor;
-    private Integer sizeDustCollect;
-    private Integer countsRegime;
-    private String typeProcessor;
-    private String category;
-    private Integer memoryPhone;
-    private Integer countsSnaps;
-    private String technology;
-    private Integer serviceFlag;
-
 }

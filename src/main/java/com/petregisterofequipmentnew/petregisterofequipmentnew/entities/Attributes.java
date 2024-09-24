@@ -30,11 +30,30 @@ public class Attributes {
     private Integer size;
     @Column(name = "price")
     private Integer price;
-    @Column(name = "category")
-    private String category;
     @Column(name = "availability_model")
     private Boolean isAvailabilityProducts;
     @OneToMany(mappedBy = "attributes")
     private List<Product> productList;
+
+    @Column(name = "numbercount_door")
+    private Integer countsDoor;
+    @Column(name = "compressor_type")
+    private String typeCompressor;
+    @Column(name = "size_dust_collect")
+    private Integer sizeDustCollect;
+    @Column(name = "numbercount_regime")
+    private Integer countsRegime;
+    @Column(name = "processor_type")
+    private String typeProcessor;
+    @Column(name = "category")
+    private String category;
+    @Column(name = "memory")
+    private Integer memoryPhone;
+    @Column(name = "numbercount_snaps")
+    private Integer countsSnaps;
+    @Column(name = "technology_tv")
+    private String technology;
+    @Transient
+    private Integer serviceFlag;
 
 }

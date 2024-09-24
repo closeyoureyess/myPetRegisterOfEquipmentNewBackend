@@ -35,33 +35,6 @@ public class ProductMapperImpl implements ProductMapper {
         if (productDto.getAttributesDto() != null) {
             product.setAttributes(attributesMapperImpl.convertDtoToAttributes(productDto.getAttributesDto()));
         }
-        if (productDto.getCountsDoor() != null) {
-            product.setCountsDoor(productDto.getCountsDoor());
-        }
-        if (productDto.getTypeCompressor() != null) {
-            product.setTypeCompressor(productDto.getTypeCompressor());
-        }
-        if (productDto.getSizeDustCollect() != null) {
-            product.setSizeDustCollect(productDto.getSizeDustCollect());
-        }
-        if (productDto.getCountsRegime() != null) {
-            product.setCountsRegime(productDto.getCountsRegime());
-        }
-        if (productDto.getCategory() != null) {
-            product.setCategory(productDto.getCategory());
-        }
-        if (productDto.getMemoryPhone() != null) {
-            product.setMemoryPhone(productDto.getMemoryPhone());
-        }
-        if (productDto.getCountsSnaps() != null) {
-            product.setCountsSnaps(productDto.getCountsSnaps());
-        }
-        if (productDto.getTechnology() != null) {
-            product.setTechnology(productDto.getTechnology());
-        }
-        if (productDto.getServiceFlag() != null) {
-            product.setServiceFlag(productDto.getServiceFlag());
-        }
         return product;
     }
 
@@ -88,36 +61,6 @@ public class ProductMapperImpl implements ProductMapper {
         }
         if (product.getAttributes() != null) {
             productDto.setAttributesDto(attributesMapperImpl.convertAttributesToDto(product.getAttributes()));
-        }
-        if (product.getCountsDoor() != null) {
-            productDto.setCountsDoor(product.getCountsDoor());
-        }
-        if (product.getTypeCompressor() != null) {
-            productDto.setTypeCompressor(product.getTypeCompressor());
-        }
-        if (product.getSizeDustCollect() != null) {
-            productDto.setSizeDustCollect(product.getSizeDustCollect());
-        }
-        if (product.getCountsRegime() != null) {
-            productDto.setCountsRegime(product.getCountsRegime());
-        }
-        if (product.getTypeProcessor() != null) {
-            productDto.setTypeProcessor(product.getTypeProcessor());
-        }
-        if (product.getCategory() != null) {
-            productDto.setCategory(product.getCategory());
-        }
-        if (product.getMemoryPhone() != null) {
-            productDto.setMemoryPhone(product.getMemoryPhone());
-        }
-        if (product.getCountsSnaps() != null) {
-            productDto.setCountsSnaps(product.getCountsSnaps());
-        }
-        if (product.getTechnology() != null) {
-            productDto.setTechnology(product.getTechnology());
-        }
-        if (product.getServiceFlag() != null) {
-            productDto.setServiceFlag(product.getServiceFlag());
         }
         return productDto;
     }

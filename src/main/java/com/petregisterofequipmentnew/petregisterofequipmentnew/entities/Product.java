@@ -31,25 +31,4 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "attributes_id")
     private Attributes attributes;
-
-    @Column(name = "numbercount_door")
-    private Integer countsDoor;
-    @Column(name = "compressor_type")
-    private String typeCompressor;
-    @Column(name = "size_dust_collect")
-    private Integer sizeDustCollect;
-    @Column(name = "numbercount_regime")
-    private Integer countsRegime;
-    @Column(name = "processor_type")
-    private String typeProcessor;
-    @Column(name = "category")
-    private String category;
-    @Column(name = "memory")
-    private Integer memoryPhone;
-    @Column(name = "numbercount_snaps")
-    private Integer countsSnaps;
-    @Column(name = "technology_tv")
-    private String technology;
-    @Transient
-    private Integer serviceFlag;
 }
