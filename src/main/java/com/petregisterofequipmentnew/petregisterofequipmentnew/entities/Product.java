@@ -17,6 +17,8 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "name_product")
+    private String nameProduct;
     @Column(name = "name_type_technic")
     @Enumerated(EnumType.STRING)
     private TypeEquipmentEnum nameTypeTechnic;

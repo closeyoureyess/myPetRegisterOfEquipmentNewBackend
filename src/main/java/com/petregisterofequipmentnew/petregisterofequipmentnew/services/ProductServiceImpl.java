@@ -1,6 +1,7 @@
 package com.petregisterofequipmentnew.petregisterofequipmentnew.services;
 
 import com.petregisterofequipmentnew.petregisterofequipmentnew.ColorEquipment;
+import com.petregisterofequipmentnew.petregisterofequipmentnew.TypeEquipmentEnum;
 import com.petregisterofequipmentnew.petregisterofequipmentnew.dtos.AttributesDto;
 import com.petregisterofequipmentnew.petregisterofequipmentnew.dtos.ProductDto;
 import com.petregisterofequipmentnew.petregisterofequipmentnew.entities.Attributes;
@@ -43,12 +44,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<List<ProductDto>> getPositionPageByPage(String nameModelDto, String typeOfEquipment, ColorEquipment colorEquipment, Integer price, Integer offset, Integer limit) {
+    public Optional<List<ProductDto>> getPositionPageByPage(String nameModelDto, TypeEquipmentEnum typeEquipmentEnum,
+                                                            ColorEquipment colorEquipment, Integer price, Integer offset, Integer limit) {
         return Optional.empty();
     }
 
     @Override
-    public List<ProductDto> getFilteredModels(String nameDevice, String typeOfEquipment, ColorEquipment colorEquipment, Integer price, Integer size, Boolean isAvailability, Integer offset, Integer limit, String sortBy, String sortOrder) {
+    public List<ProductDto> getFilteredModels(String nameProduct, TypeEquipmentEnum typeEquipmentEnum, ColorEquipment colorEquipment,
+                                              Integer price, Integer size, Boolean isAvailability, Integer offset, Integer limit, String sortBy,
+                                              String sortOrder) {
+
         return null;
     }
 

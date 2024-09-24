@@ -14,6 +14,7 @@ import java.io.Serializable;
 public class ProductDto implements Serializable {
 
     private Long id;
+    private String nameProduct;
     private TypeEquipmentEnum nameTypeTechnic;
     private String manufacturerCountry;
     private String manufacturerCompany;

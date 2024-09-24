@@ -150,7 +150,7 @@ public class AttributesMapperImpl implements AttributesMapper {
     public List<Product> transferProductDtoListToProduct(List<ProductDto> productDtoList) {
         List<Product> productList = new LinkedList<>();
         for (ProductDto productDto : productDtoList) {
-            productList.add(new Product(productDto.getId(), productDto.getNameTypeTechnic(), productDto.getManufacturerCountry(),
+            productList.add(new Product(productDto.getId(), productDto.getNameProduct(), productDto.getNameTypeTechnic(), productDto.getManufacturerCountry(),
                     productDto.getManufacturerCompany(), productDto.getIsOrderOnline(), productDto.getIsPossibilityInstallments(), null));
         }
         return productList;
@@ -160,7 +160,7 @@ public class AttributesMapperImpl implements AttributesMapper {
     public List<ProductDto> transferProductListToProductDto(List<Product> productList) {
         List<ProductDto> productDtoList = new LinkedList<>();
         for (Product product : productList) {
-            productDtoList.add(new ProductDto(product.getId(), product.getNameTypeTechnic(), product.getManufacturerCountry(),
+            productDtoList.add(new ProductDto(product.getId(), product.getNameProduct(), product.getNameTypeTechnic(), product.getManufacturerCountry(),
                     product.getManufacturerCompany(), product.getIsOrderOnline(), product.getIsOrderOnline(), null));
         }
         return productDtoList;

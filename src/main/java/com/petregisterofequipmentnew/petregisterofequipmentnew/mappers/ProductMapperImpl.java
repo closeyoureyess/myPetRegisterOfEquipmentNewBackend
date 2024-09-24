@@ -16,6 +16,12 @@ public class ProductMapperImpl implements ProductMapper {
     @Override
     public Product convertDtoToProduct(ProductDto productDto) {
         Product product = new Product();
+        if (productDto.getId() != null) {
+            product.setId(productDto.getId());
+        }
+        if (productDto.getNameProduct() != null) {
+            product.setNameProduct(productDto.getNameProduct());
+        }
         if (productDto.getNameTypeTechnic() != null) {
             product.setNameTypeTechnic(productDto.getNameTypeTechnic());
         }
@@ -42,6 +48,9 @@ public class ProductMapperImpl implements ProductMapper {
         ProductDto productDto = new ProductDto();
         if (product.getId() != null) {
             productDto.setId(product.getId());
+        }
+        if (product.getNameProduct() != null) {
+            productDto.setNameProduct(product.getNameProduct());
         }
         if (product.getNameTypeTechnic() != null) {
             productDto.setNameTypeTechnic(product.getNameTypeTechnic());

@@ -1,6 +1,7 @@
 package com.petregisterofequipmentnew.petregisterofequipmentnew.services;
 
 import com.petregisterofequipmentnew.petregisterofequipmentnew.ColorEquipment;
+import com.petregisterofequipmentnew.petregisterofequipmentnew.TypeEquipmentEnum;
 import com.petregisterofequipmentnew.petregisterofequipmentnew.dtos.ProductDto;
 import com.petregisterofequipmentnew.petregisterofequipmentnew.others.exeptions.MainException;
 
@@ -10,11 +11,11 @@ import java.util.Optional;
 public interface ProductService {
 
     ProductDto createProduct(ProductDto productDto) throws MainException;
-    Optional<List<ProductDto>> getPositionPageByPage(String nameModelDto, String typeOfEquipment, ColorEquipment colorEquipment, Integer price,
+    Optional<List<ProductDto>> getPositionPageByPage(String nameModelDto, TypeEquipmentEnum typeEquipmentEnum, ColorEquipment colorEquipment, Integer price,
                                                      Integer offset, Integer limit);
     List<ProductDto> getFilteredModels(
             String nameDevice,
-            String typeOfEquipment,
+            TypeEquipmentEnum typeEquipmentEnum,
             ColorEquipment colorEquipment,
             Integer price,
             Integer size,
