@@ -15,6 +15,6 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Page<Product> findAllByNameProduct(String name, Pageable pageable); // Поиск по имени
-    Page<Product> findAllByNameTypeTechnic(String name, TypeEquipmentEnum nameTypeTechnic, Pageable pageable); // Поиск по типу
+    Page<Product> findAllByNameAndTypeTechnic(String name, TypeEquipmentEnum nameTypeTechnic, Pageable pageable); // Поиск по типу
 
 }

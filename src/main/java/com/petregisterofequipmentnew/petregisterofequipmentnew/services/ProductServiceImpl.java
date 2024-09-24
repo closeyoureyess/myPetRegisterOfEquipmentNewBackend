@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductDto> getFilteredModels(String nameProduct, TypeEquipmentEnum typeEquipmentEnum, ColorEquipment colorEquipment,
                                               Integer price, Integer size, Boolean isAvailability, Integer offset, Integer limit, String sortBy,
                                               String sortOrder) {
-
+        findAllByNameAndColorAndPrice(String name, String color, Integer price);
         return null;
     }
 

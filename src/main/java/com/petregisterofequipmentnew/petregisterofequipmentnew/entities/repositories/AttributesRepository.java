@@ -14,12 +14,11 @@ import java.util.List;
 @Repository
 public interface AttributesRepository extends JpaRepository<Attributes, Long> {
 
-    List<Attributes> findAllByNameTypeTechnic(TypeEquipmentEnum nameTypeTechnic, Pageable pageable);
-
-    Page<Attributes> findAllByColor(ColorEquipment colorEquipment, Pageable pageable);
-
-    Page<Attributes> findAllByPriceOrderByPriceAsc(Integer price, Pageable pageable);
-
+    Page<Attributes> findAllByIdAndColor(Long id, ColorEquipment colorEquipment, Pageable pageable);
+    // id + color - (name + type) -> id + color
+    Page<Attributes> findAllByIdAndPriceOrderByPriceAsc(Long id, Integer price, Pageable pageable);
+    //nameProduct -> id + price
+    Page<Attributes> findAllByIdAndPriceOrderByPriceDesc(Long id, Integer price, Pageable pageable);
 
 
 }
