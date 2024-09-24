@@ -6,6 +6,7 @@ import com.petregisterofequipmentnew.petregisterofequipmentnew.entities.Attribut
 import com.petregisterofequipmentnew.petregisterofequipmentnew.entities.Product;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
@@ -13,14 +14,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Component
-@Validated
 public class AttributesMapperImpl implements AttributesMapper {
 
     @Autowired
+    @Lazy
     private ProductMapper productMapper;
 
     @Override
-    public Attributes convertDtoToAttributes(@NotNull AttributesDto attributesDto) {
+    public Attributes convertDtoToAttributes(AttributesDto attributesDto) {
         Attributes attributes = new Attributes();
         if (attributesDto.getId() != null) {
             attributes.setId(attributesDto.getId());
@@ -83,7 +84,7 @@ public class AttributesMapperImpl implements AttributesMapper {
     }
 
     @Override
-    public AttributesDto convertAttributesToDto(@NotNull Attributes attributes) {
+    public AttributesDto convertAttributesToDto(Attributes attributes) {
         AttributesDto attributesDto = new AttributesDto();
         if (attributes.getId() != null) {
             attributesDto.setId(attributes.getId());
@@ -146,19 +147,21 @@ public class AttributesMapperImpl implements AttributesMapper {
     }
 
     @Override
-    public List<Product> transferProductDtoListToProduct(@NotNull List<ProductDto> productDtoList) {
+    public List<Product> transferProductDtoListToProduct(List<ProductDto> productDtoList) {
         List<Product> productList = new LinkedList<>();
         for (ProductDto productDto : productDtoList) {
-            productList.add(productMapper.convertDtoToProduct(productDto));
+            productList.add(new Product(productDto.getId(), productDto.getNameTypeTechnic(), productDto.getManufacturerCountry(),
+                    productDto.getManufacturerCompany(), productDto.getIsOrderOnline(), productDto.getIsPossibilityInstallments(), null));
         }
         return productList;
     }
 
     @Override
-    public List<ProductDto> transferProductListToProductDto(@NotNull List<Product> productList) {
+    public List<ProductDto> transferProductListToProductDto(List<Product> productList) {
         List<ProductDto> productDtoList = new LinkedList<>();
         for (Product product : productList) {
-            productDtoList.add(productMapper.convertProductToDto(product));
+            productDtoList.add(new ProductDto(product.getId(), product.getNameTypeTechnic(), product.getManufacturerCountry(),
+                    product.getManufacturerCompany(), product.getIsOrderOnline(), product.getIsOrderOnline(), null));
         }
         return productDtoList;
     }

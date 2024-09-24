@@ -1,9 +1,13 @@
 package com.petregisterofequipmentnew.petregisterofequipmentnew.services;
 
 import com.petregisterofequipmentnew.petregisterofequipmentnew.ColorEquipment;
+import com.petregisterofequipmentnew.petregisterofequipmentnew.dtos.AttributesDto;
 import com.petregisterofequipmentnew.petregisterofequipmentnew.dtos.ProductDto;
+import com.petregisterofequipmentnew.petregisterofequipmentnew.entities.Attributes;
+import com.petregisterofequipmentnew.petregisterofequipmentnew.entities.Product;
 import com.petregisterofequipmentnew.petregisterofequipmentnew.entities.repositories.ProductRepository;
 import com.petregisterofequipmentnew.petregisterofequipmentnew.mappers.ProductMapper;
+import com.petregisterofequipmentnew.petregisterofequipmentnew.others.ContainerObject;
 import com.petregisterofequipmentnew.petregisterofequipmentnew.others.exeptions.MainException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +28,17 @@ public class ProductServiceImpl implements ProductService {
     private AttributesService attributesService;
 
     @Override
-    public ProductDto createPosition(ProductDto modelDto) throws MainException {
-        if (modelDto.getAttributesDto() != null){
-            attributesService.verifyThatAttributes(modelDto.getAttributesDto());
+    public ProductDto createPosition(ProductDto productDto) throws MainException {
+        Product productForSaveDB = productMapper.convertDtoToProduct(productDto);
+        if (productDto.getAttributesDto().getId() != null) {
+            Optional<ContainerObject<Attributes, AttributesDto>> optionalContainerObject = attributesService.verifyThatAttributes(productDto.getAttributesDto());
+            if (!optionalContainerObject.isEmpty() && optionalContainerObject.get().getObjectOne() instanceof Attributes) {
+                productForSaveDB.setAttributes(optionalContainerObject.get().getObjectOne());
+            }
         }
-        productRepository.save(productMapper.convertDtoToProduct(modelDto));
-        return modelDto;
+        return productMapper.convertProductToDto(
+                productRepository.save(productForSaveDB)
+        );
     }
 
     @Override

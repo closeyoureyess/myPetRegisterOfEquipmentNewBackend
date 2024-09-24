@@ -4,9 +4,12 @@ import com.petregisterofequipmentnew.petregisterofequipmentnew.dtos.AttributesDt
 import com.petregisterofequipmentnew.petregisterofequipmentnew.entities.Attributes;
 import com.petregisterofequipmentnew.petregisterofequipmentnew.entities.repositories.AttributesRepository;
 import com.petregisterofequipmentnew.petregisterofequipmentnew.mappers.AttributesMapperImpl;
+import com.petregisterofequipmentnew.petregisterofequipmentnew.others.ContainerObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,10 +21,11 @@ public class AttributesServiceImpl implements AttributesService {
     private AttributesMapperImpl attributesMapper;
 
     @Override
-    public Optional<AttributesDto> verifyThatAttributes(AttributesDto attributesDto) {
+    public Optional<ContainerObject<Attributes, AttributesDto>> verifyThatAttributes(AttributesDto attributesDto) {
         Optional<Attributes> optionalAttributes = attributesRepository.findById(attributesDto.getId());
         if (optionalAttributes.isPresent()) {
-            return Optional.of(attributesMapper.convertAttributesToDto(optionalAttributes.get()));
+            AttributesDto attributesDtoAfterDB = attributesMapper.convertAttributesToDto(optionalAttributes.get());
+            return Optional.of(new ContainerObject<>(optionalAttributes.get(), attributesDto));
         }
         return Optional.empty();
     }

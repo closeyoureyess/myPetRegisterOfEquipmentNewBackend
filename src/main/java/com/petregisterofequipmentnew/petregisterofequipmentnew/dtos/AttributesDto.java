@@ -1,8 +1,10 @@
 package com.petregisterofequipmentnew.petregisterofequipmentnew.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.petregisterofequipmentnew.petregisterofequipmentnew.ColorEquipment;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -11,7 +13,7 @@ import java.util.List;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-public class AttributesDto {
+public class AttributesDto implements Serializable {
 
     private Long id;
     private String nameDevice;
@@ -20,6 +22,7 @@ public class AttributesDto {
     private Integer size;
     private Integer price;
     private Boolean isAvailabilityProducts;
+    @JsonIgnore
     private List<ProductDto> productDtoList;
 
     private Integer countsDoor;

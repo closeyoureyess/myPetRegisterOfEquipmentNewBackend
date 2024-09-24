@@ -8,14 +8,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 @Component
-@Validated
 public class ProductMapperImpl implements ProductMapper {
 
     @Autowired
-    private AttributesMapperImpl attributesMapperImpl;
+    private AttributesMapper attributesMapper;
 
     @Override
-    public Product convertDtoToProduct(@NotNull ProductDto productDto) {
+    public Product convertDtoToProduct(ProductDto productDto) {
         Product product = new Product();
         if (productDto.getNameTypeTechnic() != null) {
             product.setNameTypeTechnic(productDto.getNameTypeTechnic());
@@ -33,13 +32,13 @@ public class ProductMapperImpl implements ProductMapper {
             product.setIsPossibilityInstallments(productDto.getIsPossibilityInstallments());
         }
         if (productDto.getAttributesDto() != null) {
-            product.setAttributes(attributesMapperImpl.convertDtoToAttributes(productDto.getAttributesDto()));
+            product.setAttributes(attributesMapper.convertDtoToAttributes(productDto.getAttributesDto()));
         }
         return product;
     }
 
     @Override
-    public ProductDto convertProductToDto(@NotNull Product product) {
+    public ProductDto convertProductToDto(Product product) {
         ProductDto productDto = new ProductDto();
         if (product.getId() != null) {
             productDto.setId(product.getId());
@@ -60,7 +59,7 @@ public class ProductMapperImpl implements ProductMapper {
             productDto.setIsPossibilityInstallments(product.getIsPossibilityInstallments());
         }
         if (product.getAttributes() != null) {
-            productDto.setAttributesDto(attributesMapperImpl.convertAttributesToDto(product.getAttributes()));
+            productDto.setAttributesDto(attributesMapper.convertAttributesToDto(product.getAttributes()));
         }
         return productDto;
     }

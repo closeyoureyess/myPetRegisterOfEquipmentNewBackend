@@ -1,10 +1,12 @@
 package com.petregisterofequipmentnew.petregisterofequipmentnew.others;
 
-import java.util.List;
-import java.util.Map;
+import com.petregisterofequipmentnew.petregisterofequipmentnew.ColorEquipment;
+import com.petregisterofequipmentnew.petregisterofequipmentnew.TypeEquipmentEnum;
 
-import static com.registerofequipment.petRegisterOfEquipment.others.ColorEquipment.*;
-import static com.registerofequipment.petRegisterOfEquipment.others.TypeEquipmentEnum.*;
+import java.util.List;
+
+import static com.petregisterofequipmentnew.petregisterofequipmentnew.ColorEquipment.*;
+import static com.petregisterofequipmentnew.petregisterofequipmentnew.TypeEquipmentEnum.*;
 
 public class ConstantsClass {
 
