@@ -23,7 +23,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto createPosition(ProductDto modelDto) throws MainException {
+        if (modelDto.getAttributesDto() != null){
 
+        }
         productRepository.save(productMapper.convertDtoToProduct(modelDto));
         return modelDto;
     }
@@ -47,5 +49,6 @@ public class ProductServiceImpl implements ProductService {
     public boolean deletePosition(Integer idModel) {
         return false;
     }
+
 
 }
