@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface ProductService {
 
-    ProductDto createPosition(ProductDto productDto) throws MainException;
+    ProductDto createProduct(ProductDto productDto) throws MainException;
     Optional<List<ProductDto>> getPositionPageByPage(String nameModelDto, String typeOfEquipment, ColorEquipment colorEquipment, Integer price,
                                                      Integer offset, Integer limit);
     List<ProductDto> getFilteredModels(

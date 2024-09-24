@@ -28,10 +28,11 @@ public class ProductServiceImpl implements ProductService {
     private AttributesService attributesService;
 
     @Override
-    public ProductDto createPosition(ProductDto productDto) throws MainException {
+    public ProductDto createProduct(ProductDto productDto) throws MainException {
         Product productForSaveDB = productMapper.convertDtoToProduct(productDto);
         if (productDto.getAttributesDto().getId() != null) {
-            Optional<ContainerObject<Attributes, AttributesDto>> optionalContainerObject = attributesService.verifyThatAttributes(productDto.getAttributesDto());
+            Optional<ContainerObject<Attributes, AttributesDto>> optionalContainerObject =
+                    attributesService.verifyThatAttributesAlreadyExists(productDto.getAttributesDto());
             if (!optionalContainerObject.isEmpty() && optionalContainerObject.get().getObjectOne() instanceof Attributes) {
                 productForSaveDB.setAttributes(optionalContainerObject.get().getObjectOne());
             }

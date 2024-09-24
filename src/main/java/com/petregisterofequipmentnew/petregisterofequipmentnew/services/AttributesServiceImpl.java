@@ -8,8 +8,6 @@ import com.petregisterofequipmentnew.petregisterofequipmentnew.others.ContainerO
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,11 +19,17 @@ public class AttributesServiceImpl implements AttributesService {
     private AttributesMapperImpl attributesMapper;
 
     @Override
-    public Optional<ContainerObject<Attributes, AttributesDto>> verifyThatAttributes(AttributesDto attributesDto) {
+    public AttributesDto createAttributes(AttributesDto attributesDto) {
+        Attributes attributes = attributesMapper.convertDtoToAttributes(attributesDto);
+        return attributesMapper.convertAttributesToDto(attributesRepository.save(attributes));
+    }
+
+    @Override
+    public Optional<ContainerObject<Attributes, AttributesDto>> verifyThatAttributesAlreadyExists(AttributesDto attributesDto) {
         Optional<Attributes> optionalAttributes = attributesRepository.findById(attributesDto.getId());
         if (optionalAttributes.isPresent()) {
             AttributesDto attributesDtoAfterDB = attributesMapper.convertAttributesToDto(optionalAttributes.get());
-            return Optional.of(new ContainerObject<>(optionalAttributes.get(), attributesDto));
+            return Optional.of(new ContainerObject<>(optionalAttributes.get(), attributesDtoAfterDB));
         }
         return Optional.empty();
     }

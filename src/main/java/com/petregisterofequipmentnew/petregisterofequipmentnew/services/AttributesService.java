@@ -4,12 +4,14 @@ import com.petregisterofequipmentnew.petregisterofequipmentnew.dtos.AttributesDt
 import com.petregisterofequipmentnew.petregisterofequipmentnew.entities.Attributes;
 import com.petregisterofequipmentnew.petregisterofequipmentnew.others.ContainerObject;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.validation.annotation.Validated;
 
-import java.util.List;
 import java.util.Optional;
 
+@Validated
 public interface AttributesService {
 
-    Optional<ContainerObject<Attributes, AttributesDto>> verifyThatAttributes(@NotNull AttributesDto attributesDto);
+    AttributesDto createAttributes(@NotNull AttributesDto attributesDto);
+    Optional<ContainerObject<Attributes, AttributesDto>> verifyThatAttributesAlreadyExists(@NotNull AttributesDto attributesDto);
 
 }

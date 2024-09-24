@@ -19,7 +19,7 @@ public class ProductContoller {
 
     @PostMapping("/create")
     public ResponseEntity<ProductDto> addModel(@RequestBody ProductDto productDto) throws MainException {
-        ProductDto localProductDto = productService.createPosition(productDto);
+        ProductDto localProductDto = productService.createProduct(productDto);
         if (localProductDto != null) {
             return ResponseEntity.ok(localProductDto);
         }
