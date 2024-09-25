@@ -11,8 +11,11 @@ import java.util.List;
 public interface ProductMapper {
 
     Product convertDtoToProduct(@NotNull ProductDto productDto);
+
     ProductDto convertProductToDto(@NotNull Product product);
+
     List<Product> transferProductDtoListToProduct(@NotNull List<ProductDto> productDtoList);
+
     List<ProductDto> transferProductListToProductDto(@NotNull List<Product> productList);
 
 }

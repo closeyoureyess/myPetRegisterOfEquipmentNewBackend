@@ -34,6 +34,7 @@ public class AttributesDto implements Serializable {
     private Integer memoryPhone;
     private Integer countsSnaps;
     private String technology;
+    @JsonIgnore
     private Integer serviceFlag;
 
 }
