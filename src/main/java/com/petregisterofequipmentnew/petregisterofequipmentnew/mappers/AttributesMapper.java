@@ -14,7 +14,5 @@ public interface AttributesMapper {
 
     Attributes convertDtoToAttributes(@NotNull AttributesDto attributesDto);
     AttributesDto convertAttributesToDto(@NotNull Attributes attributes);
-    List<Product> transferProductDtoListToProduct(@NotNull List<ProductDto> productDtoList);
-    List<ProductDto> transferProductListToProductDto(@NotNull List<Product> productList);
 
 }

@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
+import java.util.LinkedList;
+import java.util.List;
+
 @Component
 public class ProductMapperImpl implements ProductMapper {
 
@@ -71,5 +74,25 @@ public class ProductMapperImpl implements ProductMapper {
             productDto.setAttributesDto(attributesMapper.convertAttributesToDto(product.getAttributes()));
         }
         return productDto;
+    }
+
+    @Override
+    public List<Product> transferProductDtoListToProduct(List<ProductDto> productDtoList) {
+        List<Product> productList = new LinkedList<>();
+        for (ProductDto productDto : productDtoList) {
+            productList.add(new Product(productDto.getId(), productDto.getNameProduct(), productDto.getNameTypeTechnic(), productDto.getManufacturerCountry(),
+                    productDto.getManufacturerCompany(), productDto.getIsOrderOnline(), productDto.getIsPossibilityInstallments(), null));
+        }
+        return productList;
+    }
+
+    @Override
+    public List<ProductDto> transferProductListToProductDto(List<Product> productList) {
+        List<ProductDto> productDtoList = new LinkedList<>();
+        for (Product product : productList) {
+            productDtoList.add(new ProductDto(product.getId(), product.getNameProduct(), product.getNameTypeTechnic(), product.getManufacturerCountry(),
+                    product.getManufacturerCompany(), product.getIsOrderOnline(), product.getIsOrderOnline(), null));
+        }
+        return productDtoList;
     }
 }

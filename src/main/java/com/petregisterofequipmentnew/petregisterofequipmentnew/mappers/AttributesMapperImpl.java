@@ -48,7 +48,7 @@ public class AttributesMapperImpl implements AttributesMapper {
             attributes.setIsAvailabilityProducts(attributesDto.getIsAvailabilityProducts());
         }
         if (attributesDto.getProductDtoList() != null) {
-            attributes.setProductList(transferProductDtoListToProduct(
+            attributes.setProductList(productMapper.transferProductDtoListToProduct(
                             attributesDto.getProductDtoList()
                     )
             );
@@ -111,7 +111,7 @@ public class AttributesMapperImpl implements AttributesMapper {
             attributesDto.setIsAvailabilityProducts(attributes.getIsAvailabilityProducts());
         }
         if (attributes.getProductList() != null) {
-            attributesDto.setProductDtoList(transferProductListToProductDto(
+            attributesDto.setProductDtoList(productMapper.transferProductListToProductDto(
                             attributes.getProductList()
                     )
             );
@@ -144,26 +144,6 @@ public class AttributesMapperImpl implements AttributesMapper {
             attributesDto.setServiceFlag(attributes.getServiceFlag());
         }
         return attributesDto;
-    }
-
-    @Override
-    public List<Product> transferProductDtoListToProduct(List<ProductDto> productDtoList) {
-        List<Product> productList = new LinkedList<>();
-        for (ProductDto productDto : productDtoList) {
-            productList.add(new Product(productDto.getId(), productDto.getNameProduct(), productDto.getNameTypeTechnic(), productDto.getManufacturerCountry(),
-                    productDto.getManufacturerCompany(), productDto.getIsOrderOnline(), productDto.getIsPossibilityInstallments(), null));
-        }
-        return productList;
-    }
-
-    @Override
-    public List<ProductDto> transferProductListToProductDto(List<Product> productList) {
-        List<ProductDto> productDtoList = new LinkedList<>();
-        for (Product product : productList) {
-            productDtoList.add(new ProductDto(product.getId(), product.getNameProduct(), product.getNameTypeTechnic(), product.getManufacturerCountry(),
-                    product.getManufacturerCompany(), product.getIsOrderOnline(), product.getIsOrderOnline(), null));
-        }
-        return productDtoList;
     }
 
 }
