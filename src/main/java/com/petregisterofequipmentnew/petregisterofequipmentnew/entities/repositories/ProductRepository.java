@@ -12,6 +12,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Нужен рефактор на Criteria API, чтобы строить динамические запросы
+ */
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Page<Product> findAllByNameProduct(String name, Pageable pageable); // Поиск по имени
