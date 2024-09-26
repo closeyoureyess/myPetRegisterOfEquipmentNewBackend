@@ -57,7 +57,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Optional<List<ProductDto>> getFilteredModels(String nameProduct, TypeEquipmentEnum typeEquipmentEnum, ColorEquipment colorEquipment,
-                                                        Integer price, Integer size, Boolean isAvailability, Integer offset, Integer limit,
+                                                        Integer price, Integer size, Boolean isAvailability, Integer countsDoor, String typeCompressor, Integer sizeDustCollect, Integer countsRegime, String typeProcessor, String category, Integer memoryPhone, Integer countsSnaps, String technology,
+                                                        Integer offset, Integer limit,
                                                         ParametersSort parametersSort, DirectionSort directionSort) throws SortNotBeNullException {
         Page<Product> pageProduct = null;
         Pageable pageable = formingPageRequest(nameProduct, offset, limit, parametersSort, directionSort);

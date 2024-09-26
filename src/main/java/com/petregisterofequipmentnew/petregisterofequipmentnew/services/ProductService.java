@@ -21,7 +21,7 @@ public interface ProductService {
             ColorEquipment colorEquipment,
             Integer price,
             Integer size,
-            Boolean isAvailability,
+            Boolean isAvailability, Integer countsDoor, String typeCompressor, Integer sizeDustCollect, Integer countsRegime, String typeProcessor, String category, Integer memoryPhone, Integer countsSnaps, String technology,
             Integer offset,
             Integer limit,
             ParametersSort parametersSort,

@@ -43,12 +43,23 @@ public class ProductContoller {
                                                      @RequestParam(value = "price", required = false) @PositiveOrZero Integer price,
                                                      @RequestParam(value = "size", required = false) @PositiveOrZero Integer size,
                                                      @RequestParam(value = "isAvailability", required = false) Boolean isAvailability,
+                                                     @RequestParam(value = "countsDoor") Integer countsDoor,
+                                                     @RequestParam(value = "typeCompressor") String typeCompressor,
+                                                     @RequestParam(value = "size_dust_collect") Integer sizeDustCollect,
+                                                     @RequestParam(value = "countsRegime") Integer countsRegime,
+                                                     @RequestParam(value = "typeProcessor") String typeProcessor,
+                                                     @RequestParam(value = "category") String category,
+                                                     @RequestParam(value = "memoryPhone") Integer memoryPhone,
+                                                     @RequestParam(value = "countsSnaps") Integer countsSnaps,
+                                                     @RequestParam(value = "technology") String technology,
                                                      @RequestParam(value = "offset", defaultValue = "0") @Min(0) Integer offset,
                                                      @RequestParam(value = "limit", defaultValue = "10") @Min(1) @Max(100) Integer limit,
                                                      @RequestParam(value = "sortBy", defaultValue = "alphabet") ParametersSort parametersSort,
                                                      @RequestParam(value = "sortOrder", defaultValue = "asc") DirectionSort directionSort
     ) throws MainException {
-        Optional<List<ProductDto>> optionalProductDtoList = productService.getFilteredModels(nameProduct, typeEquipmentEnum, colorEquipment, price, size, isAvailability, offset, limit, parametersSort, directionSort);
+        Optional<List<ProductDto>> optionalProductDtoList = productService.getFilteredModels(nameProduct, typeEquipmentEnum,
+                colorEquipment, price, size, isAvailability, countsDoor, typeCompressor, sizeDustCollect, countsRegime,typeProcessor,
+                category, memoryPhone, countsSnaps, technology, offset, limit, parametersSort, directionSort);
         if (optionalProductDtoList.isPresent()) {
             return ResponseEntity.ok(optionalProductDtoList.get());
         }
