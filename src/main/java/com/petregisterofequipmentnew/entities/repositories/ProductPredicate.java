@@ -2,8 +2,12 @@ package com.petregisterofequipmentnew.entities.repositories;
 
 import com.petregisterofequipmentnew.ColorEquipment;
 import com.petregisterofequipmentnew.TypeEquipmentEnum;
+import com.petregisterofequipmentnew.entities.QProduct;
 import com.querydsl.core.types.Predicate;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.validation.annotation.Validated;
 
+@Validated
 public interface ProductPredicate {
 
     Predicate buildPredicate(String nameProduct, TypeEquipmentEnum typeEquipmentEnum,
@@ -13,5 +17,8 @@ public interface ProductPredicate {
                              String typeProcessor,
                              String category, Integer memoryPhone, Integer countsSnaps, String technology);
 
-
+    public <T> T individualAttributesProducts(@NotNull T booleanExpression, @NotNull TypeEquipmentEnum typeEquipmentEnum,
+                                              QProduct product, Integer countsDoor, String typeCompressor, Integer sizeDustCollect,
+                                              Integer countsRegime, String typeProcessor, String category, Integer memoryPhone,
+                                              Integer countsSnaps, String technology);
 }

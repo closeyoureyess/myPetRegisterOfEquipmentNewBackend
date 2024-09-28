@@ -24,6 +24,7 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -87,6 +88,12 @@ public class ProductServiceImpl implements ProductService {
         return false;
     }
 
+    private boolean searchPairs(TypeEquipmentEnum typeEquipmentEnum, Integer countsDoor, String typeCompressor, Integer sizeDustCollect,
+                                Integer countsRegime, String typeProcessor, String category, Integer memoryPhone, Integer countsSnaps,
+                                String technology) {
+        productPredicate.buildPredicate()
+    }
+
     private PageRequest formingPageRequest(String nameProduct, Integer offset, Integer limit, ParametersSort parametersSort, DirectionSort directionSort) throws SortNotBeNullException {
         PageRequest pageRequest;
         Sort sort = null;
@@ -109,13 +116,5 @@ public class ProductServiceImpl implements ProductService {
             throw new SortNotBeNullException(DescriptionExeptions.GENERATION_ERROR.getDescription(), new SortNotBeNullException(DescriptionExeptions.SORT_FIELD_NOT_BE_NULL.getDescription()));
         }
         return pageRequest;
-    }
-
-    private ContainerObject<Page<Product>, Page<ProductDto>> searchProductByName(String nameProduct, ParametersSort parametersSort, Integer offset, Integer limit) {
-        PageRequest pageRequest = PageRequest.of(offset, limit);
-        Page<Product> productPage = productRepository.findAllByNameProduct(nameProduct, pageRequest); //  Sort.by(parametersSort.getParameters()).ascending()
-        List<ProductDto> productList = productMapper.transferProductListToProductDto(productPage.stream().toList());
-        Page<ProductDto> productDtoPage = new PageImpl<>(productList, pageRequest, productList.size());
-        return new ContainerObject<>(productPage, productDtoPage);
     }
 }

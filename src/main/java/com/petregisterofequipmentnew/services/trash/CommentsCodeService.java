@@ -1,5 +1,9 @@
 package com.petregisterofequipmentnew.services.trash;
 
+import com.petregisterofequipmentnew.TypeEquipmentEnum;
+import com.petregisterofequipmentnew.entities.QProduct;
+import com.querydsl.core.types.dsl.BooleanExpression;
+
 public class CommentsCodeService {
 
     /*// 6. typeEquipmentEnum, colorEquipment
@@ -108,4 +112,53 @@ public class CommentsCodeService {
     }
 */
 
+
+   /* private BooleanExpression individualAttributesProducts(BooleanExpression booleanExpression, TypeEquipmentEnum typeEquipmentEnum,
+                                                           QProduct product, Integer countsDoor, String typeCompressor, Integer sizeDustCollect,
+                                                           Integer countsRegime, String typeProcessor, String category, Integer memoryPhone,
+                                                           Integer countsSnaps, String technology) {
+        switch (typeEquipmentEnum) {
+            case FRIDGE -> {
+                if (countsDoor != null) {
+                    booleanExpression = booleanExpression.and(product.attributes.countsDoor.eq(countsDoor));
+                }
+                if (typeCompressor != null) {
+                    booleanExpression = booleanExpression.and(product.attributes.typeCompressor.eq(typeCompressor));
+                }
+            }
+            case HOOVER -> {
+                if (sizeDustCollect != null) {
+                    booleanExpression = booleanExpression.and(product.attributes.sizeDustCollect.eq(sizeDustCollect));
+                }
+                if (countsRegime != null) {
+                    booleanExpression = booleanExpression.and(product.attributes.countsRegime.eq(countsRegime));
+                }
+            }
+            case PERSONAL_COMPUTER -> {
+                if (typeProcessor != null) {
+                    booleanExpression = booleanExpression.and(product.attributes.typeCompressor.eq(typeCompressor));
+                }
+                if (category != null) {
+                    booleanExpression = booleanExpression.and(product.attributes.category.eq(category));
+                }
+            }
+            case SMARTPHONE -> {
+                if (memoryPhone != null) {
+                    booleanExpression = booleanExpression.and(product.attributes.memoryPhone.eq(memoryPhone));
+                }
+                if (countsSnaps != null) {
+                    booleanExpression = booleanExpression.and(product.attributes.countsRegime.eq(countsRegime));
+                }
+            }
+            case TELEVISION -> {
+                if (category != null) {
+                    booleanExpression = booleanExpression.and(product.attributes.category.eq(category));
+                }
+                if (technology != null) {
+                    booleanExpression = booleanExpression.and(product.attributes.technology.eq(technology));
+                }
+            }
+        }
+        return booleanExpression;
+    }*/
 }

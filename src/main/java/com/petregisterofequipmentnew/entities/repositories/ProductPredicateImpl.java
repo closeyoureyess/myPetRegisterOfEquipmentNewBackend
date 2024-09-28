@@ -6,6 +6,8 @@ import com.petregisterofequipmentnew.entities.QProduct;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 
+import static com.petregisterofequipmentnew.others.ConstantsClass.ONE_FLAG;
+
 public class ProductPredicateImpl implements ProductPredicate {
 
     @Override
@@ -47,50 +49,120 @@ public class ProductPredicateImpl implements ProductPredicate {
         return booleanExpression;
     }
 
-    private BooleanExpression individualAttributesProducts(BooleanExpression booleanExpression, TypeEquipmentEnum typeEquipmentEnum,
-                                                           QProduct product, Integer countsDoor, String typeCompressor, Integer sizeDustCollect,
-                                                           Integer countsRegime, String typeProcessor, String category, Integer memoryPhone,
-                                                           Integer countsSnaps, String technology) {
+    @Override
+    public <T> T individualAttributesProducts(T booleanExpression, TypeEquipmentEnum typeEquipmentEnum,
+                            QProduct product, Integer countsDoor, String typeCompressor, Integer sizeDustCollect,
+                            Integer countsRegime, String typeProcessor, String category, Integer memoryPhone,
+                            Integer countsSnaps, String technology) {
+        int counter = 0;
         switch (typeEquipmentEnum) {
             case FRIDGE -> {
-                if (countsDoor != null) {
-                    booleanExpression = booleanExpression.and(product.attributes.countsDoor.eq(countsDoor));
-                }
-                if (typeCompressor != null) {
-                    booleanExpression = booleanExpression.and(product.attributes.typeCompressor.eq(typeCompressor));
-                }
+                return buildIndividualAttributesCountsDoor(booleanExpression, product, countsDoor, typeCompressor, counter);
             }
             case HOOVER -> {
-                if (sizeDustCollect != null) {
-                    booleanExpression = booleanExpression.and(product.attributes.sizeDustCollect.eq(sizeDustCollect));
-                }
-                if (countsRegime != null) {
-                    booleanExpression = booleanExpression.and(product.attributes.countsRegime.eq(countsRegime));
-                }
+                return buildIndividualAttributesHoover(booleanExpression, product, sizeDustCollect, countsRegime, counter);
             }
             case PERSONAL_COMPUTER -> {
-                if (typeProcessor != null) {
-                    booleanExpression = booleanExpression.and(product.attributes.typeCompressor.eq(typeCompressor));
-                }
-                if (category != null) {
-                    booleanExpression = booleanExpression.and(product.attributes.category.eq(category));
-                }
+                return buildIndividualAttributesPersonalComputer(booleanExpression, product, typeProcessor, category, counter);
             }
             case SMARTPHONE -> {
-                if (memoryPhone != null) {
-                    booleanExpression = booleanExpression.and(product.attributes.memoryPhone.eq(memoryPhone));
-                }
-                if (countsSnaps != null) {
-                    booleanExpression = booleanExpression.and(product.attributes.countsRegime.eq(countsRegime));
-                }
+                return buildIndividualAttributesSmartPhone(booleanExpression, product, memoryPhone, countsSnaps, counter);
             }
             case TELEVISION -> {
-                if (category != null) {
-                    booleanExpression = booleanExpression.and(product.attributes.category.eq(category));
-                }
-                if (technology != null) {
-                    booleanExpression = booleanExpression.and(product.attributes.technology.eq(technology));
-                }
+                return buildIndividualAttributesTelevision(booleanExpression, product, category, technology, counter);
+            }
+        }
+        return null;
+    }
+
+    private <T> T buildIndividualAttributesCountsDoor(T booleanExpression, QProduct product, Integer countsDoor,
+                                                      String typeCompressor, int counter) {
+        if (countsDoor != null) {
+            if (booleanExpression instanceof BooleanExpression) {
+                booleanExpression = (T) ((BooleanExpression) booleanExpression).and(product.attributes.countsDoor.eq(countsDoor));
+            } else if (booleanExpression instanceof Integer) {
+                booleanExpression = (T) (Integer) counter++;
+            }
+        }
+        if (typeCompressor != null) {
+            if (booleanExpression instanceof BooleanExpression) {
+                booleanExpression = (T) ((BooleanExpression) booleanExpression).and(product.attributes.typeCompressor.eq(typeCompressor));
+            } else if (booleanExpression instanceof Integer) {
+                booleanExpression = (T) (Integer) counter++;
+            }
+        }
+        return booleanExpression;
+    }
+
+    private <T> T buildIndividualAttributesHoover(T booleanExpression, QProduct product, Integer sizeDustCollect, Integer countsRegime, int counter) {
+        if (sizeDustCollect != null) {
+            if (booleanExpression instanceof BooleanExpression) {
+                booleanExpression = (T) ((BooleanExpression) booleanExpression).and(product.attributes.sizeDustCollect.eq(sizeDustCollect));
+            } else if (booleanExpression instanceof Integer) {
+                booleanExpression = (T) (Integer) counter++;
+            }
+        }
+        if (countsRegime != null) {
+            if (booleanExpression instanceof BooleanExpression) {
+                booleanExpression = (T) ((BooleanExpression) booleanExpression).and(product.attributes.countsRegime.eq(countsRegime));
+            } else if (booleanExpression instanceof Integer) {
+                booleanExpression = (T) (Integer) counter++;
+            }
+        }
+        return booleanExpression;
+    }
+
+    private <T> T buildIndividualAttributesPersonalComputer(T booleanExpression, QProduct product, String typeProcessor, String category, int counter) {
+        if (typeProcessor != null) {
+            if (booleanExpression instanceof BooleanExpression) {
+                booleanExpression = (T) ((BooleanExpression) booleanExpression).and(product.attributes.typeCompressor.eq(typeProcessor));
+            } else if (booleanExpression instanceof Integer) {
+                booleanExpression = (T) (Integer) counter++;
+            }
+        }
+        if (category != null) {
+            if (booleanExpression instanceof BooleanExpression) {
+                booleanExpression = (T) ((BooleanExpression) booleanExpression).and(product.attributes.category.eq(category));
+            }
+            else if (booleanExpression instanceof Integer) {
+                booleanExpression = (T) (Integer) counter++;
+            }
+        }
+        return booleanExpression;
+    }
+
+    private <T> T buildIndividualAttributesSmartPhone(T booleanExpression, QProduct product, Integer memoryPhone,
+                                                      Integer countsSnaps, int counter) {
+        if (memoryPhone != null) {
+            if (booleanExpression instanceof BooleanExpression) {
+                booleanExpression = (T) ((BooleanExpression) booleanExpression).and(product.attributes.memoryPhone.eq(memoryPhone));
+            } else if (booleanExpression instanceof Integer) {
+                booleanExpression = (T) (Integer) counter++;
+            }
+        }
+        if (countsSnaps != null) {
+            if (booleanExpression instanceof BooleanExpression) {
+                booleanExpression = (T) ((BooleanExpression) booleanExpression).and(product.attributes.countsRegime.eq(countsSnaps));
+            } else if (booleanExpression instanceof Integer) {
+                booleanExpression = (T) (Integer) counter++;
+            }
+        }
+        return booleanExpression;
+    }
+
+    private <T> T buildIndividualAttributesTelevision(T booleanExpression, QProduct product, String category, String technology, int counter) {
+        if (category != null) {
+            if (booleanExpression instanceof BooleanExpression) {
+                booleanExpression = (T) ((BooleanExpression) booleanExpression).and(product.attributes.category.eq(category));
+            } else if (booleanExpression instanceof Integer) {
+                booleanExpression = (T) (Integer) counter++;
+            }
+        }
+        if (technology != null) {
+            if (booleanExpression instanceof BooleanExpression) {
+                booleanExpression = (T) ((BooleanExpression) booleanExpression).and(product.attributes.technology.eq(technology));
+            } else if (booleanExpression instanceof Integer) {
+                booleanExpression = (T) (Integer) counter++;
             }
         }
         return booleanExpression;
