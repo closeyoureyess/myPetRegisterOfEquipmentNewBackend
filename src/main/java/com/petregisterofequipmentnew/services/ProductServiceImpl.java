@@ -7,6 +7,7 @@ import com.petregisterofequipmentnew.entities.repositories.ProductPredicate;
 import com.petregisterofequipmentnew.others.ConstantsClass;
 import com.petregisterofequipmentnew.others.ContainerObject;
 import com.petregisterofequipmentnew.others.ParametersSort;
+import com.petregisterofequipmentnew.others.exeptions.DifferentTypesEquipmentExeption;
 import com.petregisterofequipmentnew.others.exeptions.MainException;
 import com.petregisterofequipmentnew.others.exeptions.SortNotBeNullException;
 import com.petregisterofequipmentnew.ColorEquipment;
@@ -26,6 +27,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import static com.petregisterofequipmentnew.others.ConstantsClass.ONE_FLAG;
 
 @Service
 @Slf4j
@@ -66,7 +69,11 @@ public class ProductServiceImpl implements ProductService {
     public Optional<List<ProductDto>> getFilteredModels(String nameProduct, TypeEquipmentEnum typeEquipmentEnum, ColorEquipment colorEquipment,
                                                         Integer price, Integer size, Boolean isAvailability, Integer countsDoor, String typeCompressor, Integer sizeDustCollect, Integer countsRegime, String typeProcessor, String category, Integer memoryPhone, Integer countsSnaps, String technology,
                                                         Integer offset, Integer limit,
-                                                        ParametersSort parametersSort, DirectionSort directionSort) throws SortNotBeNullException {
+                                                        ParametersSort parametersSort, DirectionSort directionSort) throws SortNotBeNullException, DifferentTypesEquipmentExeption {
+        if (countsDoor != null || typeCompressor != null || sizeDustCollect != null || countsRegime != null || typeProcessor != null
+                || category != null || memoryPhone != null || countsSnaps != null || technology != null)
+            checkPairsByAttributes(typeEquipmentEnum, countsDoor, typeCompressor, sizeDustCollect, countsRegime, typeProcessor, category,
+                    memoryPhone, countsSnaps, technology);
         Pageable pageable = formingPageRequest(nameProduct, offset, limit, parametersSort, directionSort);
         Predicate predicate = productPredicate.buildPredicate(nameProduct, typeEquipmentEnum, colorEquipment, price, size, isAvailability, countsDoor,
                 typeCompressor, sizeDustCollect, countsRegime, typeProcessor, category, memoryPhone, countsSnaps, technology);
@@ -88,10 +95,14 @@ public class ProductServiceImpl implements ProductService {
         return false;
     }
 
-    private boolean searchPairs(TypeEquipmentEnum typeEquipmentEnum, Integer countsDoor, String typeCompressor, Integer sizeDustCollect,
-                                Integer countsRegime, String typeProcessor, String category, Integer memoryPhone, Integer countsSnaps,
-                                String technology) {
-        productPredicate.buildPredicate()
+    private void checkPairsByAttributes(TypeEquipmentEnum typeEquipmentEnum, Integer countsDoor, String typeCompressor, Integer sizeDustCollect,
+                                        Integer countsRegime, String typeProcessor, String category, Integer memoryPhone, Integer countsSnaps,
+                                        String technology) throws DifferentTypesEquipmentExeption {
+        Integer result = productPredicate.individualAttributesProducts(ONE_FLAG, typeEquipmentEnum, null, countsDoor, typeCompressor,
+                sizeDustCollect, countsRegime, typeProcessor, category, memoryPhone, countsSnaps, technology);
+        if (result != null) {
+            throw new DifferentTypesEquipmentExeption(DescriptionExeptions.GENERATION_ERROR.getDescription(), new DifferentTypesEquipmentExeption(DescriptionExeptions.DIFFERENT_TYPES_TECHNICS.getDescription()));
+        }
     }
 
     private PageRequest formingPageRequest(String nameProduct, Integer offset, Integer limit, ParametersSort parametersSort, DirectionSort directionSort) throws SortNotBeNullException {
