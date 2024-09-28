@@ -3,6 +3,7 @@ package com.petregisterofequipmentnew.services;
 import com.petregisterofequipmentnew.TypeEquipmentEnum;
 import com.petregisterofequipmentnew.entities.Attributes;
 import com.petregisterofequipmentnew.entities.Product;
+import com.petregisterofequipmentnew.entities.repositories.ProductPredicate;
 import com.petregisterofequipmentnew.others.ConstantsClass;
 import com.petregisterofequipmentnew.others.ContainerObject;
 import com.petregisterofequipmentnew.others.ParametersSort;
@@ -15,8 +16,10 @@ import com.petregisterofequipmentnew.entities.repositories.ProductRepository;
 import com.petregisterofequipmentnew.mappers.ProductMapper;
 import com.petregisterofequipmentnew.others.DirectionSort;
 import com.petregisterofequipmentnew.others.exeptions.DescriptionExeptions;
+import com.querydsl.core.types.Predicate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +36,9 @@ public class ProductServiceImpl implements ProductService {
     private ProductMapper productMapper;
     @Autowired
     private AttributesService attributesService;
+    @Autowired
+    @Qualifier(value = "ProductPredicateImpl")
+    private ProductPredicate productPredicate;
 
     @Override
     public ProductDto createProduct(ProductDto productDto) throws MainException {
@@ -60,119 +66,13 @@ public class ProductServiceImpl implements ProductService {
                                                         Integer price, Integer size, Boolean isAvailability, Integer countsDoor, String typeCompressor, Integer sizeDustCollect, Integer countsRegime, String typeProcessor, String category, Integer memoryPhone, Integer countsSnaps, String technology,
                                                         Integer offset, Integer limit,
                                                         ParametersSort parametersSort, DirectionSort directionSort) throws SortNotBeNullException {
-        Page<Product> pageProduct = null;
         Pageable pageable = formingPageRequest(nameProduct, offset, limit, parametersSort, directionSort);
-        // 6. typeEquipmentEnum, colorEquipment
-        if (typeEquipmentEnum != null && colorEquipment != null && price == null && size == null && isAvailability == null) {
-            pageProduct = productRepository.findAllByNameAndTypeTechnicAndColor(nameProduct, typeEquipmentEnum, colorEquipment, pageable);
-        }
-        // 7. typeEquipmentEnum, price
-        else if (typeEquipmentEnum != null && price != null && colorEquipment == null && size == null && isAvailability == null) {
-            pageProduct = productRepository.findAllByNameAndTypeTechnicAndPrice(nameProduct, typeEquipmentEnum, price, pageable);
-        }
-        // 8. typeEquipmentEnum, size
-        else if (typeEquipmentEnum != null && size != null && colorEquipment == null && price == null && isAvailability == null) {
-            pageProduct = productRepository.findAllByNameAndTypeTechnicAndSize(nameProduct, typeEquipmentEnum, size, pageable);
-        }
-        // 9. typeEquipmentEnum, isAvailability
-        else if (typeEquipmentEnum != null && isAvailability != null && colorEquipment == null && price == null && size == null) {
-            pageProduct = productRepository.findAllByNameAndTypeTechnicAndAvailability(nameProduct, typeEquipmentEnum, isAvailability, pageable);
-        }
-        // 10. colorEquipment, price
-        else if (colorEquipment != null && price != null && typeEquipmentEnum == null && size == null && isAvailability == null) {
-            pageProduct = productRepository.findAllByNameAndColorAndPrice(nameProduct, colorEquipment, price, pageable);
-        }
-        // 11. colorEquipment, size
-        else if (colorEquipment != null && size != null && typeEquipmentEnum == null && price == null && isAvailability == null) {
-            pageProduct = productRepository.findAllByNameAndColorAndSize(nameProduct, colorEquipment, size, pageable);
-        }
-        // 12. colorEquipment, isAvailability
-        else if (colorEquipment != null && isAvailability != null && typeEquipmentEnum == null && price == null && size == null) {
-            pageProduct = productRepository.findAllByNameAndColorAndAvailability(nameProduct, colorEquipment, isAvailability, pageable);
-        }
-        // 13. price, size
-        else if (price != null && size != null && typeEquipmentEnum == null && colorEquipment == null && isAvailability == null) {
-            pageProduct = productRepository.findAllByNameAndPriceAndSize(nameProduct, price, size, pageable);
-        }
-        // 14. price, isAvailability
-        else if (price != null && isAvailability != null && typeEquipmentEnum == null && colorEquipment == null && size == null) {
-            pageProduct = productRepository.findAllByNameAndPriceAndAvailability(nameProduct, price, isAvailability, pageable);
-        }
-        // 15. size, isAvailability
-        else if (size != null && isAvailability != null && typeEquipmentEnum == null && colorEquipment == null && price == null) {
-            pageProduct = productRepository.findAllByNameAndSizeAndAvailability(nameProduct, size, isAvailability, pageable);
-        }
-        // 16. typeEquipmentEnum, colorEquipment, price
-        else if (typeEquipmentEnum != null && colorEquipment != null && price != null && size == null && isAvailability == null) {
-            pageProduct = productRepository.findAllByNameAndTypeTechnicAndColorAndPrice(nameProduct, typeEquipmentEnum, colorEquipment, price, pageable);
-        }
-        // 17. typeEquipmentEnum, colorEquipment, size
-        else if (typeEquipmentEnum != null && colorEquipment != null && size != null && price == null && isAvailability == null) {
-            pageProduct = productRepository.findAllByNameAndTypeTechnicAndColorAndSize(nameProduct, typeEquipmentEnum, colorEquipment, size, pageable);
-        }
-        // 18. typeEquipmentEnum, colorEquipment, isAvailability
-        else if (typeEquipmentEnum != null && colorEquipment != null && isAvailability != null && price == null && size == null) {
-            pageProduct = productRepository.findAllByNameAndTypeTechnicAndColorAndAvailability(nameProduct, typeEquipmentEnum, colorEquipment, isAvailability, pageable);
-        }
-        // 19. typeEquipmentEnum, price, size
-        else if (typeEquipmentEnum != null && price != null && size != null && colorEquipment == null && isAvailability == null) {
-            pageProduct = productRepository.findAllByNameAndTypeTechnicAndPriceAndSize(nameProduct, typeEquipmentEnum, price, size, pageable);
-        }
-        // 20. typeEquipmentEnum, price, isAvailability
-        else if (typeEquipmentEnum != null && price != null && isAvailability != null && colorEquipment == null && size == null) {
-            pageProduct = productRepository.findAllByNameAndTypeTechnicAndPriceAndAvailability(nameProduct, typeEquipmentEnum, price, isAvailability, pageable);
-        }
-        // 21. typeEquipmentEnum, size, isAvailability
-        else if (typeEquipmentEnum != null && size != null && isAvailability != null && colorEquipment == null && price == null) {
-            pageProduct = productRepository.findAllByNameAndTypeTechnicAndSizeAndAvailability(nameProduct, typeEquipmentEnum, size, isAvailability, pageable);
-        }
-        // 22. colorEquipment, price, size
-        else if (colorEquipment != null && price != null && size != null && typeEquipmentEnum == null && isAvailability == null) {
-            pageProduct = productRepository.findAllByNameAndColorAndPriceAndSize(nameProduct, colorEquipment, price, size, pageable);
-        }
-        // 23. colorEquipment, price, isAvailability
-        else if (colorEquipment != null && price != null && isAvailability != null && typeEquipmentEnum == null && size == null) {
-            pageProduct = productRepository.findAllByNameAndColorAndPriceAndAvailability(nameProduct, colorEquipment, price, isAvailability, pageable);
-        }
-        // 24. colorEquipment, size, isAvailability
-        else if (colorEquipment != null && size != null && isAvailability != null && typeEquipmentEnum == null && price == null) {
-            pageProduct = productRepository.findAllByNameAndColorAndSizeAndAvailability(nameProduct, colorEquipment, size, isAvailability, pageable);
-        }
-        // 25. price, size, isAvailability
-        else if (price != null && size != null && isAvailability != null && typeEquipmentEnum == null && colorEquipment == null) {
-            pageProduct = productRepository.findAllByNameAndPriceAndSizeAndAvailability(nameProduct, price, size, isAvailability, pageable);
-        }
-        // 26. typeEquipmentEnum, colorEquipment, price, size
-        else if (typeEquipmentEnum != null && colorEquipment != null && price != null && size != null && isAvailability == null) {
-            pageProduct = productRepository.findAllByNameAndTypeTechnicAndColorAndPriceAndSize(nameProduct, typeEquipmentEnum, colorEquipment, price, size, pageable);
-        }
-        // 27. typeEquipmentEnum, colorEquipment, price, isAvailability
-        else if (typeEquipmentEnum != null && colorEquipment != null && price != null && isAvailability != null && size == null) {
-            pageProduct = productRepository.findAllByNameAndTypeTechnicAndColorAndPriceAndAvailability(nameProduct, typeEquipmentEnum, colorEquipment, price, isAvailability, pageable);
-        }
-        // 28. typeEquipmentEnum, colorEquipment, size, isAvailability
-        else if (typeEquipmentEnum != null && colorEquipment != null && size != null && isAvailability != null && price == null) {
-            pageProduct = productRepository.findAllByNameAndTypeTechnicAndColorAndSizeAndAvailability(nameProduct, typeEquipmentEnum, colorEquipment, size, isAvailability, pageable);
-        }
-        // 29. typeEquipmentEnum, price, size, isAvailability
-        else if (typeEquipmentEnum != null && price != null && size != null && isAvailability != null && colorEquipment == null) {
-            pageProduct = productRepository.findAllByNameAndTypeTechnicAndPriceAndSizeAndAvailability(nameProduct, typeEquipmentEnum, price, size, isAvailability, pageable);
-        }
-        // 30. colorEquipment, price, size, isAvailability
-        else if (colorEquipment != null && price != null && size != null && isAvailability != null && typeEquipmentEnum == null) {
-            pageProduct = productRepository.findAllByNameAndColorAndPriceAndSizeAndAvailability(nameProduct, colorEquipment, price, size, isAvailability, pageable);
-        }
-        // 31. typeEquipmentEnum, colorEquipment, price, size, isAvailability
-        else if (typeEquipmentEnum != null && colorEquipment != null && price != null && size != null && isAvailability != null) {
-            pageProduct = productRepository.findAllByNameAndTypeTechnicAndColorAndPriceAndSizeAndAvailability(nameProduct, typeEquipmentEnum, colorEquipment, price, size, isAvailability, pageable);
-        }
+        Predicate predicate = productPredicate.buildPredicate(nameProduct, typeEquipmentEnum, colorEquipment, price, size, isAvailability, countsDoor,
+                typeCompressor, sizeDustCollect, countsRegime, typeProcessor, category, memoryPhone, countsSnaps, technology);
+        Page<Product> pageProduct = productRepository.findAll(predicate, pageable);
 
-        if (pageProduct == null){
-            return Optional.empty();
-        } else {
-            List<ProductDto> productDtoList = productMapper.transferProductListToProductDto(pageProduct.stream().toList());
-            return Optional.of(productDtoList);
-        }
+        List<ProductDto> productDtoList = productMapper.transferProductListToProductDto(pageProduct.stream().toList());
+        return Optional.of(productDtoList);
     }
 
     @Override
