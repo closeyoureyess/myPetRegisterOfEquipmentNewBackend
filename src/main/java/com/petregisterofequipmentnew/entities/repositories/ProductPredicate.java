@@ -39,11 +39,11 @@ public class ProductPredicate {
             booleanExpression = booleanExpression.and(product.attributes.isAvailabilityProducts.eq(isAvailability));
         }
         if (typeEquipmentEnum != null) {
-            if (countsDoor != null && typeEquipmentEnum != null) {
+            if (countsDoor != null) {
                 if (typeEquipmentEnum.equals(TypeEquipmentEnum.FRIDGE))
                     booleanExpression = booleanExpression.and(product.attributes.countsDoor.eq(countsDoor));
             }
-            if (typeCompressor != null && typeEquipmentEnum != null) {
+            if (typeCompressor != null) {
                 if (typeEquipmentEnum.equals(TypeEquipmentEnum.FRIDGE))
                     booleanExpression = booleanExpression.and(product.attributes.typeCompressor.eq(typeCompressor));
             }
