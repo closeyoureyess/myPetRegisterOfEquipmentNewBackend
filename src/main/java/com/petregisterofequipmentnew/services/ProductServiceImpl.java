@@ -70,9 +70,11 @@ public class ProductServiceImpl implements ProductService {
         Predicate predicate = productPredicate.buildPredicate(nameProduct, typeEquipmentEnum, colorEquipment, price, size, isAvailability, countsDoor,
                 typeCompressor, sizeDustCollect, countsRegime, typeProcessor, category, memoryPhone, countsSnaps, technology);
         Page<Product> pageProduct = productRepository.findAll(predicate, pageable);
-
         List<ProductDto> productDtoList = productMapper.transferProductListToProductDto(pageProduct.stream().toList());
-        return Optional.of(productDtoList);
+        if (!productDtoList.isEmpty()) {
+            return Optional.of(productDtoList);
+        }
+        return Optional.empty();
     }
 
     @Override
