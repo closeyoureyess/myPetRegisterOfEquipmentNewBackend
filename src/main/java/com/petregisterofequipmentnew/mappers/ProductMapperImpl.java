@@ -1,6 +1,8 @@
 package com.petregisterofequipmentnew.mappers;
 
+import com.petregisterofequipmentnew.dtos.AttributesDto;
 import com.petregisterofequipmentnew.dtos.ProductDto;
+import com.petregisterofequipmentnew.entities.Attributes;
 import com.petregisterofequipmentnew.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -79,7 +81,16 @@ public class ProductMapperImpl implements ProductMapper {
         List<Product> productList = new LinkedList<>();
         for (ProductDto productDto : productDtoList) {
             productList.add(new Product(productDto.getId(), productDto.getNameProduct(), productDto.getNameTypeTechnic(), productDto.getManufacturerCountry(),
-                    productDto.getManufacturerCompany(), productDto.getIsOrderOnline(), productDto.getIsPossibilityInstallments(), null));
+                    productDto.getManufacturerCompany(), productDto.getIsOrderOnline(), productDto.getIsPossibilityInstallments(), new Attributes(
+                    productDto.getAttributesDto().getId(), productDto.getAttributesDto().getNameDevice(),
+                    productDto.getAttributesDto().getSerialNumber(), productDto.getAttributesDto().getColor(), productDto.getAttributesDto().getSize(),
+                    productDto.getAttributesDto().getPrice(), productDto.getAttributesDto().getIsAvailabilityProducts(), null,
+                    productDto.getAttributesDto().getCountsDoor(), productDto.getAttributesDto().getTypeCompressor(),
+                    productDto.getAttributesDto().getSizeDustCollect(), productDto.getAttributesDto().getCountsRegime(),
+                    productDto.getAttributesDto().getTypeProcessor(), productDto.getAttributesDto().getCategory(),
+                    productDto.getAttributesDto().getMemoryPhone(), productDto.getAttributesDto().getCountsSnaps(),
+                    productDto.getAttributesDto().getTechnology(), productDto.getAttributesDto().getServiceFlag()
+            )));
         }
         return productList;
     }
@@ -89,7 +100,15 @@ public class ProductMapperImpl implements ProductMapper {
         List<ProductDto> productDtoList = new LinkedList<>();
         for (Product product : productList) {
             productDtoList.add(new ProductDto(product.getId(), product.getNameProduct(), product.getNameTypeTechnic(), product.getManufacturerCountry(),
-                    product.getManufacturerCompany(), product.getIsOrderOnline(), product.getIsOrderOnline(), null));
+                    product.getManufacturerCompany(), product.getIsOrderOnline(), product.getIsOrderOnline(),
+                    new AttributesDto(product.getAttributes().getId(), product.getAttributes().getNameDevice(),
+                            product.getAttributes().getSerialNumber(), product.getAttributes().getColor(), product.getAttributes().getSize(),
+                            product.getAttributes().getPrice(), product.getAttributes().getIsAvailabilityProducts(), null,
+                            product.getAttributes().getCountsDoor(), product.getAttributes().getTypeCompressor(),
+                            product.getAttributes().getSizeDustCollect(), product.getAttributes().getCountsRegime(),
+                            product.getAttributes().getTypeProcessor(), product.getAttributes().getCategory(),
+                            product.getAttributes().getMemoryPhone(), product.getAttributes().getCountsSnaps(),
+                            product.getAttributes().getTechnology(), product.getAttributes().getServiceFlag())));
         }
         return productDtoList;
     }

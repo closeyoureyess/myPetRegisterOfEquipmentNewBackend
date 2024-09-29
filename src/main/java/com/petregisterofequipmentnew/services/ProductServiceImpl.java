@@ -77,7 +77,8 @@ public class ProductServiceImpl implements ProductService {
         Pageable pageable = formingPageRequest(nameProduct, offset, limit, parametersSort, directionSort);
         Page<Product> pageProduct = formingPageFromIfNameProductNullOrNotNull(nameProduct, pageable, colorEquipment, price, size, isAvailability,
                 typeEquipmentEnum, countsDoor, typeCompressor, sizeDustCollect, countsRegime, typeProcessor, category, memoryPhone, countsSnaps, technology);
-        List<ProductDto> productDtoList = productMapper.transferProductListToProductDto(pageProduct.stream().toList());
+        List<Product> productList = pageProduct.stream().toList();
+        List<ProductDto> productDtoList = productMapper.transferProductListToProductDto(productList);
         if (!productDtoList.isEmpty()) {
             return Optional.of(productDtoList);
         }
