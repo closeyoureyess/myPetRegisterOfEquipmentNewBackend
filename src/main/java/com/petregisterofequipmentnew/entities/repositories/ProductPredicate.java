@@ -1,7 +1,7 @@
 package com.petregisterofequipmentnew.entities.repositories;
 
-import com.petregisterofequipmentnew.ColorEquipment;
-import com.petregisterofequipmentnew.TypeEquipmentEnum;
+import com.petregisterofequipmentnew.others.ColorEquipment;
+import com.petregisterofequipmentnew.others.TypeEquipmentEnum;
 import com.petregisterofequipmentnew.entities.QProduct;
 import com.querydsl.core.types.Predicate;
 import jakarta.validation.constraints.NotNull;

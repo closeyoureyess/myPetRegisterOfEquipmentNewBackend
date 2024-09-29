@@ -1,6 +1,6 @@
 package com.petregisterofequipmentnew.entities;
 
-import com.petregisterofequipmentnew.TypeEquipmentEnum;
+import com.petregisterofequipmentnew.others.TypeEquipmentEnum;
 import jakarta.persistence.*;
 import lombok.*;
 

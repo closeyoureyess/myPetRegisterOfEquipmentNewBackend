@@ -1,6 +1,6 @@
 package com.petregisterofequipmentnew.services;
 
-import com.petregisterofequipmentnew.TypeEquipmentEnum;
+import com.petregisterofequipmentnew.others.TypeEquipmentEnum;
 import com.petregisterofequipmentnew.entities.Attributes;
 import com.petregisterofequipmentnew.entities.Product;
 import com.petregisterofequipmentnew.entities.repositories.ProductPredicate;
@@ -10,7 +10,7 @@ import com.petregisterofequipmentnew.others.ParametersSort;
 import com.petregisterofequipmentnew.others.exeptions.DifferentTypesEquipmentExeption;
 import com.petregisterofequipmentnew.others.exeptions.MainException;
 import com.petregisterofequipmentnew.others.exeptions.SortNotBeNullException;
-import com.petregisterofequipmentnew.ColorEquipment;
+import com.petregisterofequipmentnew.others.ColorEquipment;
 import com.petregisterofequipmentnew.dtos.AttributesDto;
 import com.petregisterofequipmentnew.dtos.ProductDto;
 import com.petregisterofequipmentnew.entities.repositories.ProductRepository;
@@ -25,7 +25,6 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import static com.petregisterofequipmentnew.others.ConstantsClass.ONE_FLAG;
@@ -41,7 +40,7 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private AttributesService attributesService;
     @Autowired
-    @Qualifier(value = "ProductPredicateImpl")
+    @Qualifier("productPredicateImpl")
     private ProductPredicate productPredicate;
 
     @Override

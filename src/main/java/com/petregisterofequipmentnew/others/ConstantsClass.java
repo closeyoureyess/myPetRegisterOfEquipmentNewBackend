@@ -1,12 +1,9 @@
 package com.petregisterofequipmentnew.others;
 
-import com.petregisterofequipmentnew.ColorEquipment;
-import com.petregisterofequipmentnew.TypeEquipmentEnum;
-
 import java.util.List;
 
-import static com.petregisterofequipmentnew.ColorEquipment.*;
-import static com.petregisterofequipmentnew.TypeEquipmentEnum.*;
+import static com.petregisterofequipmentnew.others.ColorEquipment.*;
+import static com.petregisterofequipmentnew.others.TypeEquipmentEnum.*;
 
 public class ConstantsClass {
 

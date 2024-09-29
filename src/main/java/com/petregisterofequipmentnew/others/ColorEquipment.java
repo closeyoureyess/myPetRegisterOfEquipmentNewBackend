@@ -1,4 +1,4 @@
-package com.petregisterofequipmentnew;
+package com.petregisterofequipmentnew.others;
 
 public enum ColorEquipment {
 

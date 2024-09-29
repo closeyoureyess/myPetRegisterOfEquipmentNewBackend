@@ -1,13 +1,13 @@
 package com.petregisterofequipmentnew.entities.repositories;
 
-import com.petregisterofequipmentnew.ColorEquipment;
-import com.petregisterofequipmentnew.TypeEquipmentEnum;
+import com.petregisterofequipmentnew.others.ColorEquipment;
+import com.petregisterofequipmentnew.others.TypeEquipmentEnum;
 import com.petregisterofequipmentnew.entities.QProduct;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import org.springframework.stereotype.Component;
 
-import static com.petregisterofequipmentnew.others.ConstantsClass.ONE_FLAG;
-
+@Component
 public class ProductPredicateImpl implements ProductPredicate {
 
     @Override
@@ -75,6 +75,7 @@ public class ProductPredicateImpl implements ProductPredicate {
         return null;
     }
 
+    @SuppressWarnings("unchecked")
     private <T> T buildIndividualAttributesCountsDoor(T booleanExpression, QProduct product, Integer countsDoor,
                                                       String typeCompressor, int counter) {
         if (countsDoor != null) {
@@ -94,6 +95,7 @@ public class ProductPredicateImpl implements ProductPredicate {
         return booleanExpression;
     }
 
+    @SuppressWarnings("unchecked")
     private <T> T buildIndividualAttributesHoover(T booleanExpression, QProduct product, Integer sizeDustCollect, Integer countsRegime, int counter) {
         if (sizeDustCollect != null) {
             if (booleanExpression instanceof BooleanExpression) {
@@ -112,6 +114,7 @@ public class ProductPredicateImpl implements ProductPredicate {
         return booleanExpression;
     }
 
+    @SuppressWarnings("unchecked")
     private <T> T buildIndividualAttributesPersonalComputer(T booleanExpression, QProduct product, String typeProcessor, String category, int counter) {
         if (typeProcessor != null) {
             if (booleanExpression instanceof BooleanExpression) {
@@ -131,6 +134,7 @@ public class ProductPredicateImpl implements ProductPredicate {
         return booleanExpression;
     }
 
+    @SuppressWarnings("unchecked")
     private <T> T buildIndividualAttributesSmartPhone(T booleanExpression, QProduct product, Integer memoryPhone,
                                                       Integer countsSnaps, int counter) {
         if (memoryPhone != null) {
@@ -150,6 +154,7 @@ public class ProductPredicateImpl implements ProductPredicate {
         return booleanExpression;
     }
 
+    @SuppressWarnings("unchecked")
     private <T> T buildIndividualAttributesTelevision(T booleanExpression, QProduct product, String category, String technology, int counter) {
         if (category != null) {
             if (booleanExpression instanceof BooleanExpression) {

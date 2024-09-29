@@ -1,6 +1,6 @@
 package com.petregisterofequipmentnew.entities;
 
-import com.petregisterofequipmentnew.ColorEquipment;
+import com.petregisterofequipmentnew.others.ColorEquipment;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,6 +1,6 @@
 package com.petregisterofequipmentnew.dtos;
 
-import com.petregisterofequipmentnew.TypeEquipmentEnum;
+import com.petregisterofequipmentnew.others.TypeEquipmentEnum;
 import lombok.*;
 
 import java.io.Serializable;

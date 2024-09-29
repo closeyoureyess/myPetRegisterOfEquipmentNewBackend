@@ -1,7 +1,7 @@
 package com.petregisterofequipmentnew.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.petregisterofequipmentnew.ColorEquipment;
+import com.petregisterofequipmentnew.others.ColorEquipment;
 import lombok.*;
 
 import java.io.Serializable;

@@ -1,9 +1,9 @@
 package com.petregisterofequipmentnew.services;
 
-import com.petregisterofequipmentnew.TypeEquipmentEnum;
+import com.petregisterofequipmentnew.others.TypeEquipmentEnum;
 import com.petregisterofequipmentnew.others.ParametersSort;
 import com.petregisterofequipmentnew.others.exeptions.MainException;
-import com.petregisterofequipmentnew.ColorEquipment;
+import com.petregisterofequipmentnew.others.ColorEquipment;
 import com.petregisterofequipmentnew.dtos.ProductDto;
 import com.petregisterofequipmentnew.others.DirectionSort;
 

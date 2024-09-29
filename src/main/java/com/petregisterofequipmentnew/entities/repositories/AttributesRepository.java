@@ -1,6 +1,6 @@
 package com.petregisterofequipmentnew.entities.repositories;
 
-import com.petregisterofequipmentnew.ColorEquipment;
+import com.petregisterofequipmentnew.others.ColorEquipment;
 import com.petregisterofequipmentnew.entities.Attributes;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

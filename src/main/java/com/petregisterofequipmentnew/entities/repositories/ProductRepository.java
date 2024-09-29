@@ -1,12 +1,7 @@
 package com.petregisterofequipmentnew.entities.repositories;
 
-import com.petregisterofequipmentnew.ColorEquipment;
-import com.petregisterofequipmentnew.TypeEquipmentEnum;
 import com.petregisterofequipmentnew.entities.Product;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +10,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long>, QuerydslPredicateExecutor<Product> {
-    Page<Product> findAllByNameProduct(String name, Pageable pageable); // Поиск по имени
+    /*Page<Product> findAllByNameProduct(String name, Pageable pageable); // Поиск по имени
 
     // 6. typeEquipmentEnum, colorEquipment
     @Query(value = "SELECT * FROM Products p INNER JOIN AttributesProducts a ON p.attributes_id = a.id " +
@@ -178,5 +173,5 @@ public interface ProductRepository extends JpaRepository<Product, Long>, Queryds
             "AND a.price = :price AND a.size = :size AND a.availability_model = :isAvailability",
             nativeQuery = true)
     Page<Product> findAllByNameAndTypeTechnicAndColorAndPriceAndSizeAndAvailability(String name, TypeEquipmentEnum typeEquipmentEnum, ColorEquipment colorEquipment, Integer price, Integer size, Boolean isAvailability, Pageable pageable);
-
+*/
 }

@@ -1,9 +1,5 @@
 package com.petregisterofequipmentnew.services.trash;
 
-import com.petregisterofequipmentnew.TypeEquipmentEnum;
-import com.petregisterofequipmentnew.entities.QProduct;
-import com.querydsl.core.types.dsl.BooleanExpression;
-
 public class CommentsCodeService {
 
     /*// 6. typeEquipmentEnum, colorEquipment

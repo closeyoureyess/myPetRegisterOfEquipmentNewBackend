@@ -1,8 +1,8 @@
 package com.petregisterofequipmentnew.controllers;
 
 import com.petregisterofequipmentnew.others.ParametersSort;
-import com.petregisterofequipmentnew.ColorEquipment;
-import com.petregisterofequipmentnew.TypeEquipmentEnum;
+import com.petregisterofequipmentnew.others.ColorEquipment;
+import com.petregisterofequipmentnew.others.TypeEquipmentEnum;
 import com.petregisterofequipmentnew.dtos.ProductDto;
 import com.petregisterofequipmentnew.others.DirectionSort;
 import com.petregisterofequipmentnew.others.exeptions.MainException;
