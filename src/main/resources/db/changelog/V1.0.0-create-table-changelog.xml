@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="1" author="Sirik">
+        <sql>
+            CREATE TYPE nametch_enum AS ENUM ('FRIDGE', 'HOOVER', 'PERSONAL_COMPUTER', 'SMARTPHONE', 'TELEVISION');
+        </sql>
+        <rollback>
+            DROP TYPE nametch_enum;
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2" author="Sirik">
+        <sql>
+            CREATE TYPE color_enum AS ENUM (
+            'BLACK', 'WHITE', 'RED', 'GREEN', 'BLUE', 'YELLOW', 'CYAN', 'MAGENTA',
+            'GRAY', 'DARK_GRAY', 'LIGHT_GRAY', 'SILVER', 'MAROON', 'OLIVE',
+            'PURPLE', 'TEAL', 'NAVY', 'AQUA', 'FUCHSIA', 'LIME', 'INDIGO',
+            'ORANGE', 'PINK', 'BROWN', 'BEIGE', 'TAN', 'IVORY', 'CORAL',
+            'SALMON', 'KHAKI', 'PEACH', 'VIOLET', 'TURQUOISE', 'MINT',
+            'CHARTREUSE', 'SLATE_BLUE', 'HOT_PINK', 'SKY_BLUE',
+            'MEDIUM_SEA_GREEN', 'ORCHID', 'LIGHT_CYAN', 'LIGHT_GREEN',
+            'LIGHT_YELLOW', 'LIGHT_PINK', 'LIGHT_SALMON', 'LIGHT_BLUE',
+            'LIGHT_GOLDENROD_YELLOW', 'LIGHT_CORAL', 'LIGHT_TURQUOISE',
+            'LIGHT_SLATE_GRAY'
+            );
+        </sql>
+        <rollback>
+            DROP TYPE color_enum;
+        </rollback>
+    </changeSet>
+
+    <changeSet id="3" author="Sirik">
+        <createTable tableName="AttributesProducts">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name_device" type="varchar"/>
+            <column name="serial_number" type="BIGINT"/>
+            <column name="color" type="color_enum"/>
+            <column name="size" type="BIGINT"/>
+            <column name="availability_model" type="BOOLEAN"/>
+
+            <column name="numbercount_door" type="BIGINT"/>
+            <column name="compressor_type" type="varchar"/>
+            <column name="size_dust_collect" type="BIGINT"/>
+            <column name="numbercount_regime" type="BIGINT"/>
+            <column name="processor_type" type="varchar"/>
+            <column name="category" type="varchar"/>
+            <column name="memory" type="BIGINT"/>
+            <column name="numbercount_snaps" type="BIGINT"/>
+            <column name="technology_tv" type="varchar"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="AttributesProducts"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="4" author="Sirik">
+        <createTable tableName="Products">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name_product" type="varchar"/>
+            <column name="name_type_technic" type="nametch_enum"/>
+            <column name="manufacturer_country" type="varchar"/>
+            <column name="manufacturer_company" type="varchar"/>
+            <column name="order_online" type="BOOLEAN"/>
+            <column name="attributes_id" type="BIGINT"/>
+            <column name="possibility_installments" type="BOOLEAN"/>
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="Products"
+                baseColumnNames="attributes_id"
+                referencedTableName="AttributesProducts"
+                referencedColumnNames="id"
+                constraintName="fk_products_attributes"/>
+        <rollback>
+            <dropForeignKeyConstraint
+                    baseTableName="Products"
+                    constraintName="fk_products_attributes"/>
+            <dropTable tableName="Products"/>
+        </rollback>
+    </changeSet>
+
+
+</databaseChangeLog>
