@@ -17,7 +17,7 @@ public interface ProductPredicate {
                              String typeProcessor,
                              String category, Integer memoryPhone, Integer countsSnaps, String technology);
 
-    public <T> T individualAttributesProducts(@NotNull T booleanExpression, @NotNull TypeEquipmentEnum typeEquipmentEnum,
+    <T> T individualAttributesProducts(@NotNull T booleanExpression, @NotNull TypeEquipmentEnum typeEquipmentEnum,
                                               QProduct product, Integer countsDoor, String typeCompressor, Integer sizeDustCollect,
                                               Integer countsRegime, String typeProcessor, String category, Integer memoryPhone,
                                               Integer countsSnaps, String technology);
