@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+
+    <changeSet id="6" author="Sirik">
+        <addColumn tableName="AttributesProducts">
+            <column name="price" type="BIGINT"/>
+        </addColumn>
+        <rollback>
+            <dropColumn tableName="AttributesProducts" columnName="price"/>
+        </rollback>
+    </changeSet>
+
+    <!-- ChangeSet 6: Вставка данных для Fridge -->
+    <changeSet id="7" author="Sirik">
+        <!-- Вставка в AttributesProducts -->
+        <insert tableName="AttributesProducts">
+            <column name="id" valueNumeric="1"/>
+            <column name="name_device" value="Fridge"/>
+            <column name="serial_number" valueNumeric="1001"/>
+            <column name="color" value="WHITE"/>
+            <column name="size" valueNumeric="300"/>
+            <column name="price" valueNumeric="500"/>
+            <column name="availability_model" valueBoolean="true"/>
+            <column name="numbercount_door" valueNumeric="2"/>
+            <column name="compressor_type" value="Inverter"/>
+        </insert>
+
+        <!-- Вставка в Products -->
+        <insert tableName="Products">
+            <column name="id" valueNumeric="1"/>
+            <column name="name_product" value="LG Fridge Model X"/>
+            <column name="name_type_technic" value="FRIDGE"/>
+            <column name="manufacturer_country" value="South Korea"/>
+            <column name="manufacturer_company" value="LG Electronics"/>
+            <column name="order_online" valueBoolean="true"/>
+            <column name="possibility_installments" valueBoolean="true"/>
+            <column name="attributes_id" valueNumeric="1"/>
+        </insert>
+
+        <rollback>
+            <delete tableName="Products">
+                <where>id = 1</where>
+            </delete>
+            <delete tableName="AttributesProducts">
+                <where>id = 1</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+    <!-- ChangeSet 7: Вставка данных для Hoover -->
+    <changeSet id="8" author="Sirik">
+        <!-- Вставка в AttributesProducts -->
+        <insert tableName="AttributesProducts">
+            <column name="id" valueNumeric="2"/>
+            <column name="name_device" value="Hoover"/>
+            <column name="serial_number" valueNumeric="1002"/>
+            <column name="color" value="BLACK"/>
+            <column name="size" valueNumeric="NULL"/>
+            <column name="price" valueNumeric="300"/>
+            <column name="availability_model" valueBoolean="true"/>
+            <column name="size_dust_collect" valueNumeric="50"/>
+            <column name="numbercount_regime" valueNumeric="3"/>
+        </insert>
+
+        <!-- Вставка в Products -->
+        <insert tableName="Products">
+            <column name="id" valueNumeric="2"/>
+            <column name="name_product" value="Hoover Vacuum Cleaner Pro"/>
+            <column name="name_type_technic" value="HOOVER"/>
+            <column name="manufacturer_country" value="USA"/>
+            <column name="manufacturer_company" value="Hoover"/>
+            <column name="order_online" valueBoolean="true"/>
+            <column name="possibility_installments" valueBoolean="false"/>
+            <column name="attributes_id" valueNumeric="2"/>
+        </insert>
+
+        <rollback>
+            <delete tableName="Products">
+                <where>id = 2</where>
+            </delete>
+            <delete tableName="AttributesProducts">
+                <where>id = 2</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+    <!-- ChangeSet 8: Вставка данных для PC -->
+    <changeSet id="9" author="Sirik">
+        <!-- Вставка в AttributesProducts -->
+        <insert tableName="AttributesProducts">
+            <column name="id" valueNumeric="3"/>
+            <column name="name_device" value="PC"/>
+            <column name="serial_number" valueNumeric="1003"/>
+            <column name="color" value="GRAY"/>
+            <column name="size" valueNumeric="NULL"/>
+            <column name="price" valueNumeric="800"/>
+            <column name="availability_model" valueBoolean="true"/>
+            <column name="processor_type" value="Intel i7"/>
+            <column name="category" value="Gaming"/>
+        </insert>
+
+        <!-- Вставка в Products -->
+        <insert tableName="Products">
+            <column name="id" valueNumeric="3"/>
+            <column name="name_product" value="Dell Gaming PC"/>
+            <column name="name_type_technic" value="PERSONAL_COMPUTER"/>
+            <column name="manufacturer_country" value="USA"/>
+            <column name="manufacturer_company" value="Dell"/>
+            <column name="order_online" valueBoolean="true"/>
+            <column name="possibility_installments" valueBoolean="true"/>
+            <column name="attributes_id" valueNumeric="3"/>
+        </insert>
+
+        <rollback>
+            <delete tableName="Products">
+                <where>id = 3</where>
+            </delete>
+            <delete tableName="AttributesProducts">
+                <where>id = 3</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+    <!-- ChangeSet 9: Вставка данных для Smartphone -->
+    <changeSet id="10" author="Sirik">
+        <!-- Вставка в AttributesProducts -->
+        <insert tableName="AttributesProducts">
+            <column name="id" valueNumeric="4"/>
+            <column name="name_device" value="Smartphone"/>
+            <column name="serial_number" valueNumeric="1004"/>
+            <column name="color" value="BLUE"/>
+            <column name="size" valueNumeric="NULL"/>
+            <column name="price" valueNumeric="700"/>
+            <column name="availability_model" valueBoolean="true"/>
+            <column name="memory" valueNumeric="8"/>
+            <column name="numbercount_snaps" valueNumeric="12"/>
+        </insert>
+
+        <!-- Вставка в Products -->
+        <insert tableName="Products">
+            <column name="id" valueNumeric="4"/>
+            <column name="name_product" value="Samsung Galaxy S21"/>
+            <column name="name_type_technic" value="SMARTPHONE"/>
+            <column name="manufacturer_country" value="South Korea"/>
+            <column name="manufacturer_company" value="Samsung"/>
+            <column name="order_online" valueBoolean="true"/>
+            <column name="possibility_installments" valueBoolean="false"/>
+            <column name="attributes_id" valueNumeric="4"/>
+        </insert>
+
+        <rollback>
+            <delete tableName="Products">
+                <where>id = 4</where>
+            </delete>
+            <delete tableName="AttributesProducts">
+                <where>id = 4</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+    <!-- ChangeSet 10: Вставка данных для TV -->
+    <changeSet id="11" author="Sirik">
+        <!-- Вставка в AttributesProducts -->
+        <insert tableName="AttributesProducts">
+            <column name="id" valueNumeric="5"/>
+            <column name="name_device" value="TV"/>
+            <column name="serial_number" valueNumeric="1005"/>
+            <column name="color" value="BLACK"/>
+            <column name="size" valueNumeric="55"/>
+            <column name="price" valueNumeric="1000"/>
+            <column name="availability_model" valueBoolean="true"/>
+            <column name="category" value="Television"/>
+            <column name="technology_tv" value="OLED"/>
+        </insert>
+
+        <!-- Вставка в Products -->
+        <insert tableName="Products">
+            <column name="id" valueNumeric="5"/>
+            <column name="name_product" value="Sony Bravia OLED"/>
+            <column name="name_type_technic" value="TELEVISION"/>
+            <column name="manufacturer_country" value="Japan"/>
+            <column name="manufacturer_company" value="Sony"/>
+            <column name="order_online" valueBoolean="true"/>
+            <column name="possibility_installments" valueBoolean="true"/>
+            <column name="attributes_id" valueNumeric="5"/>
+        </insert>
+
+        <rollback>
+            <delete tableName="Products">
+                <where>id = 5</where>
+            </delete>
+            <delete tableName="AttributesProducts">
+                <where>id = 5</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
