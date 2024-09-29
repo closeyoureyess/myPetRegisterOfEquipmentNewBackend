@@ -37,7 +37,7 @@ public class ProductContoller {
     }
 
     @GetMapping("/gen-info/{nameProduct}")
-    public ResponseEntity<List<ProductDto>> getModel(@PathVariable(value = "nameProduct") @NotNull String nameProduct,
+    public ResponseEntity<List<ProductDto>> getModel(@PathVariable(value = "nameProduct", required = false) String nameProduct,
                                                      @RequestParam(value = "typeOfEquipment", required = false) TypeEquipmentEnum typeEquipmentEnum,
                                                      @RequestParam(value = "color", required = false) ColorEquipment colorEquipment,
                                                      @RequestParam(value = "price", required = false) @PositiveOrZero Integer price,

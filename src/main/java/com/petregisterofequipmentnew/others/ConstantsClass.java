@@ -12,7 +12,7 @@ public class ConstantsClass {
     public static final String DOT = ".";
     public static final String D_LETTER_ENG_ALPHABET = "D";
     public static final String NAME_TYPE_DTO = "Dto";
-    public static final String FROM_SORT_FIELD_IS_NAME = "nameProduct";
+    public static final String FROM_SORT_FIELD_IS_TYPE_TECHNIC = "nameProduct";
     public static final String FROM_SORT_FIELD_IS_PRICE = "price";
     public static final Integer ONE_FLAG = 1;
     public static final Integer ZERO_FLAG = 0;
