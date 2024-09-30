@@ -1,8 +1,8 @@
 package com.petregisterofequipmentnew.back.entities.repositories;
 
+import com.petregisterofequipmentnew.back.entities.QProduct;
 import com.petregisterofequipmentnew.back.others.ColorEquipment;
 import com.petregisterofequipmentnew.back.others.TypeEquipmentEnum;
-import com.petregisterofequipmentnew.entities.QProduct;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import org.springframework.stereotype.Component;
