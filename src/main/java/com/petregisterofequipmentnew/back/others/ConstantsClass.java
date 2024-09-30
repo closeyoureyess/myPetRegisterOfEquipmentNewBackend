@@ -15,6 +15,7 @@ public class ConstantsClass {
     public static final String FROM_SORT_FIELD_IS_PRICE = "attributes.price";
     public static final String TEST_VALUE_STRING = "Test";
     public static final String ATTRIBUTESDTO_FIELD_NAME = "attributesDto";
+    public static final String NAME_DEVICE_FIELD_NAME = "nameDevice";
     public static final String D_ALPHABET_SYMBOL = "D";
     public static final Boolean TEST_VALUE_BOOLEAN = true;
     public static final Integer ONE_FLAG = 1;

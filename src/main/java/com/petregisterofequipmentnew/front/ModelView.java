@@ -9,6 +9,7 @@ import com.vaadin.flow.router.Route;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import static com.petregisterofequipmentnew.back.others.ConstantsClass.*;
@@ -26,21 +27,30 @@ public class ModelView extends VerticalLayout {
                         null, null, null, null,
                         null, null, null, null, null,
                         null)).build();
-        Grid<ProductDto> productDtoGrid = getFieldsNameFromCustomClass(productDto, new Grid<>());
-
+        Grid<ProductDto> productDtoGrid = new Grid<>(ProductDto.class);
+        productDtoGrid.removeAllColumns();
+        List<String> stringList = getFieldsNameFromCustomClass(productDto);
+        for (String s : stringList)
+            productDtoGrid.addColumns(s);
+        add(productDtoGrid);
     }
 
-    private Grid<ProductDto> getFieldsNameFromCustomClass(ProductDto productDto, Grid<ProductDto> productGrid) {
+    private List<String> getFieldsNameFromCustomClass(ProductDto productDto) {
+        List<String> stringList = new LinkedList<>();
         List<Field> fieldList = Arrays.stream(productDto.getClass().getDeclaredFields()).toList();
         for (Field field : fieldList) {
             String newField = field.getName();
-            productGrid.addColumns(newField);
             if (newField.equals(ATTRIBUTESDTO_FIELD_NAME)) {
-                newField = newField.substring(ZERO_FLAG, newField.lastIndexOf(D_ALPHABET_SYMBOL) + 1);
+                List<Field> fieldAttributesList = Arrays.stream(new AttributesDto().getClass().getDeclaredFields()).toList();
+                for (Field fieldAttributes : fieldAttributesList) {
+                    String newAttributesField = fieldAttributes.getName();
+                    if (newAttributesField.equals(NAME_DEVICE_FIELD_NAME))
+                        newField = newAttributesField;
+                }
             }
-            productGrid.addColumns(newField);
+            stringList.add(newField);
         }
-        return productGrid;
+        return stringList;
     }
 
 }
