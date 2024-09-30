@@ -30,8 +30,13 @@ public class ModelView extends VerticalLayout {
         Grid<ProductDto> productDtoGrid = new Grid<>(ProductDto.class);
         productDtoGrid.removeAllColumns();
         List<String> stringList = getFieldsNameFromCustomClass(productDto);
-        for (String s : stringList)
-            productDtoGrid.addColumns(s);
+        for (String s : stringList) {
+            if (s.equals(ATTRIBUTESDTO_FIELD_NAME)) {
+                productDtoGrid.addColumn(s).setHeader(NAME_DEVICE_FIELD_NAME).setFlexGrow(3);
+            } else {
+                productDtoGrid.addColumn(s).setFlexGrow(3);
+            }
+        }
         add(productDtoGrid);
     }
 
@@ -40,14 +45,6 @@ public class ModelView extends VerticalLayout {
         List<Field> fieldList = Arrays.stream(productDto.getClass().getDeclaredFields()).toList();
         for (Field field : fieldList) {
             String newField = field.getName();
-            if (newField.equals(ATTRIBUTESDTO_FIELD_NAME)) {
-                List<Field> fieldAttributesList = Arrays.stream(new AttributesDto().getClass().getDeclaredFields()).toList();
-                for (Field fieldAttributes : fieldAttributesList) {
-                    String newAttributesField = fieldAttributes.getName();
-                    if (newAttributesField.equals(NAME_DEVICE_FIELD_NAME))
-                        newField = newAttributesField;
-                }
-            }
             stringList.add(newField);
         }
         return stringList;
