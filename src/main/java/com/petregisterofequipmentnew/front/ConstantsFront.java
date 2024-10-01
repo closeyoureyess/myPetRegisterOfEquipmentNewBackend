@@ -7,4 +7,6 @@ public class ConstantsFront {
     public static final String WEIGHT_SIZE_BUTTON_CREATE = "50px";
     public static final String HEIGHT_SIZE_BUTTON_CREATE = "25px";
 
+    public static final String MARGIN_CSS_STYLE = "margin-top";
+
 }

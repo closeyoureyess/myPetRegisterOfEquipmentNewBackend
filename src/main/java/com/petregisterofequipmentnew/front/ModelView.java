@@ -4,9 +4,10 @@ import com.petregisterofequipmentnew.back.dtos.AttributesDto;
 import com.petregisterofequipmentnew.back.dtos.ProductDto;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -20,12 +21,10 @@ import static com.petregisterofequipmentnew.front.ConstantsFront.*;
 @Route
 public class ModelView extends VerticalLayout {
 
-    @Autowired
-    private Button button;
-    @Autowired
-    private Grid<ProductDto> gridProductDto;
-
     public ModelView() {
+        Button button = new Button();
+        Grid<ProductDto> gridProductDto = new Grid<>(ProductDto.class);
+        HorizontalLayout horizontalLayout = new HorizontalLayout();
         ProductDto productDto = ProductDto.builder().id(Long.valueOf(ONE_FLAG)).nameProduct(TEST_VALUE_STRING).nameTypeTechnic(FRIDGE)
                 .manufacturerCountry(TEST_VALUE_STRING).manufacturerCompany(TEST_VALUE_STRING)
                 .isOrderOnline(TEST_VALUE_BOOLEAN).isPossibilityInstallments(TEST_VALUE_BOOLEAN)
@@ -34,19 +33,25 @@ public class ModelView extends VerticalLayout {
                         null, null, null, null,
                         null, null, null, null, null,
                         null)).build();
+
         gridProductDto.removeAllColumns();
         List<String> stringList = getFieldsNameFromCustomClass(productDto);
         for (String s : stringList) {
             if (s.equals(ATTRIBUTESDTO_FIELD_NAME)) {
-                gridProductDto.addColumn(s).setHeader(NAME_DEVICE_FIELD_NAME).setFlexGrow(THREE_NUMBER);
+                gridProductDto.addColumn(s).setHeader(NAME_DEVICE_FIELD_NAME)/*.setFlexGrow(THREE_NUMBER)*/;
             } else {
-                gridProductDto.addColumn(s).setFlexGrow(THREE_NUMBER);
+                gridProductDto.addColumn(s);
             }
         }
+
         button.setText(CREATE_BUTTON);
-        button.setWidth(WEIGHT_SIZE_BUTTON_CREATE);
-        button.setHeight(HEIGHT_SIZE_BUTTON_CREATE);;
-        add(gridProductDto, button);
+
+        horizontalLayout.setWidthFull();
+        horizontalLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
+        horizontalLayout.getStyle().set(MARGIN_CSS_STYLE, "20px");
+        horizontalLayout.add(button);
+
+        add(horizontalLayout, gridProductDto);
     }
 
     private List<String> getFieldsNameFromCustomClass(ProductDto productDto) {
