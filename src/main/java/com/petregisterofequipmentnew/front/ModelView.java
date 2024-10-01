@@ -2,10 +2,11 @@ package com.petregisterofequipmentnew.front;
 
 import com.petregisterofequipmentnew.back.dtos.AttributesDto;
 import com.petregisterofequipmentnew.back.dtos.ProductDto;
-import com.petregisterofequipmentnew.back.entities.Product;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -14,9 +15,15 @@ import java.util.List;
 
 import static com.petregisterofequipmentnew.back.others.ConstantsClass.*;
 import static com.petregisterofequipmentnew.back.others.TypeEquipmentEnum.FRIDGE;
+import static com.petregisterofequipmentnew.front.ConstantsFront.*;
 
 @Route
 public class ModelView extends VerticalLayout {
+
+    @Autowired
+    private Button button;
+    @Autowired
+    private Grid<ProductDto> gridProductDto;
 
     public ModelView() {
         ProductDto productDto = ProductDto.builder().id(Long.valueOf(ONE_FLAG)).nameProduct(TEST_VALUE_STRING).nameTypeTechnic(FRIDGE)
@@ -27,17 +34,19 @@ public class ModelView extends VerticalLayout {
                         null, null, null, null,
                         null, null, null, null, null,
                         null)).build();
-        Grid<ProductDto> productDtoGrid = new Grid<>(ProductDto.class);
-        productDtoGrid.removeAllColumns();
+        gridProductDto.removeAllColumns();
         List<String> stringList = getFieldsNameFromCustomClass(productDto);
         for (String s : stringList) {
             if (s.equals(ATTRIBUTESDTO_FIELD_NAME)) {
-                productDtoGrid.addColumn(s).setHeader(NAME_DEVICE_FIELD_NAME).setFlexGrow(3);
+                gridProductDto.addColumn(s).setHeader(NAME_DEVICE_FIELD_NAME).setFlexGrow(THREE_NUMBER);
             } else {
-                productDtoGrid.addColumn(s).setFlexGrow(3);
+                gridProductDto.addColumn(s).setFlexGrow(THREE_NUMBER);
             }
         }
-        add(productDtoGrid);
+        button.setText(CREATE_BUTTON);
+        button.setWidth(WEIGHT_SIZE_BUTTON_CREATE);
+        button.setHeight(HEIGHT_SIZE_BUTTON_CREATE);;
+        add(gridProductDto, button);
     }
 
     private List<String> getFieldsNameFromCustomClass(ProductDto productDto) {
@@ -49,5 +58,4 @@ public class ModelView extends VerticalLayout {
         }
         return stringList;
     }
-
 }
