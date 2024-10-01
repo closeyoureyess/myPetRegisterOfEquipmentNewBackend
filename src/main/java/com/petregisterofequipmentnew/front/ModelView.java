@@ -19,12 +19,13 @@ import static com.petregisterofequipmentnew.back.others.TypeEquipmentEnum.FRIDGE
 import static com.petregisterofequipmentnew.front.ConstantsFront.*;
 
 @Route
-public class ModelView extends VerticalLayout {
+public class ModelView extends BaseAppLayout {
 
     public ModelView() {
         Button button = new Button();
         Grid<ProductDto> gridProductDto = new Grid<>(ProductDto.class);
         HorizontalLayout horizontalLayout = new HorizontalLayout();
+        VerticalLayout verticalLayout = new VerticalLayout();
         ProductDto productDto = ProductDto.builder().id(Long.valueOf(ONE_FLAG)).nameProduct(TEST_VALUE_STRING).nameTypeTechnic(FRIDGE)
                 .manufacturerCountry(TEST_VALUE_STRING).manufacturerCompany(TEST_VALUE_STRING)
                 .isOrderOnline(TEST_VALUE_BOOLEAN).isPossibilityInstallments(TEST_VALUE_BOOLEAN)
@@ -51,7 +52,9 @@ public class ModelView extends VerticalLayout {
         horizontalLayout.getStyle().set(MARGIN_CSS_STYLE, "20px");
         horizontalLayout.add(button);
 
-        add(horizontalLayout, gridProductDto);
+        verticalLayout.add(horizontalLayout, gridProductDto);
+
+        setContent(verticalLayout);
     }
 
     private List<String> getFieldsNameFromCustomClass(ProductDto productDto) {
