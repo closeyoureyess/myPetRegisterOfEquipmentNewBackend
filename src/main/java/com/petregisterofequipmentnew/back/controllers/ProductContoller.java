@@ -57,12 +57,27 @@ public class ProductContoller {
                                                      @RequestParam(value = "sortOrder", defaultValue = "asc") DirectionSort directionSort
     ) throws MainException {
         Optional<List<ProductDto>> optionalProductDtoList = productService.getFilteredModels(nameProduct, typeEquipmentEnum,
-                colorEquipment, price, size, isAvailability, countsDoor, typeCompressor, sizeDustCollect, countsRegime,typeProcessor,
+                colorEquipment, price, size, isAvailability, countsDoor, typeCompressor, sizeDustCollect, countsRegime, typeProcessor,
                 category, memoryPhone, countsSnaps, technology, offset, limit, parametersSort, directionSort);
         if (optionalProductDtoList.isPresent()) {
             return ResponseEntity.ok(optionalProductDtoList.get());
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @PutMapping("/update-product")
+    public ResponseEntity<ProductDto> editModel(@RequestBody ProductDto productDto) {
+        Optional<ProductDto> resultChangeProductDto = productService.changePosition(productDto);
+        if (resultChangeProductDto.isPresent()) {
+            return ResponseEntity.ok(resultChangeProductDto.get());
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ProductDto> deleteModel(@PathVariable Integer id) {
+        productService.deletePosition(id);
+        return ResponseEntity.ok().build();
     }
 
 }

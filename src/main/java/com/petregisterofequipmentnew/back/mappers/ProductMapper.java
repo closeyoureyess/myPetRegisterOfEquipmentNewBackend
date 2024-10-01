@@ -18,4 +18,6 @@ public interface ProductMapper {
 
     List<ProductDto> transferProductListToProductDto(@NotNull List<Product> productList);
 
+    ProductDto compareProductAndDto(@NotNull ProductDto productDto, @NotNull Product product);
+
 }

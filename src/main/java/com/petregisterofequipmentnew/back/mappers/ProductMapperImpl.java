@@ -76,6 +76,8 @@ public class ProductMapperImpl implements ProductMapper {
         return productDto;
     }
 
+
+
     @Override
     public List<Product> transferProductDtoListToProduct(List<ProductDto> productDtoList) {
         List<Product> productList = new LinkedList<>();
@@ -112,4 +114,26 @@ public class ProductMapperImpl implements ProductMapper {
         }
         return productDtoList;
     }
+
+    @Override
+    public ProductDto compareProductAndDto(ProductDto productDto, Product product) {
+        if (!productDto.getNameProduct().equals(product.getNameProduct()))
+            product.setNameProduct(productDto.getNameProduct());
+        if (!productDto.getNameTypeTechnic().equals(product.getNameTypeTechnic()))
+            product.setNameTypeTechnic(productDto.getNameTypeTechnic());
+        if (!productDto.getManufacturerCountry().equals(product.getManufacturerCountry()))
+            product.setManufacturerCountry(productDto.getManufacturerCountry());
+        if (!productDto.getManufacturerCompany().equals(product.getManufacturerCompany()))
+            product.setManufacturerCompany(productDto.getManufacturerCompany());
+        if (productDto.getIsOrderOnline() != null)
+            product.setIsOrderOnline(productDto.getIsOrderOnline());
+        if (productDto.getIsPossibilityInstallments() != null)
+            product.setIsPossibilityInstallments(productDto.getIsPossibilityInstallments());
+        if (productDto.getAttributesDto() != null) {
+
+        }
+        return null;
+    }
+
+
 }

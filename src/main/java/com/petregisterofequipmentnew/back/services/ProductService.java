@@ -27,7 +27,7 @@ public interface ProductService {
             ParametersSort parametersSort,
             DirectionSort directionSort
     ) throws MainException;
-    ProductDto changePosition(ProductDto productDto);
-    boolean deletePosition(Integer idModel);
+    Optional<ProductDto> changePosition(ProductDto productDto);
+    void deletePosition(Integer idModel);
 
 }

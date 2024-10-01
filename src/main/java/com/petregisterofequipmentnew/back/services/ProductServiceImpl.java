@@ -86,13 +86,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDto changePosition(ProductDto productDto) {
+    public Optional<ProductDto> changePosition(ProductDto productDto) {
+        Optional<Product> optionalProductDto = productRepository.findById(productDto.getId());
+        if (optionalProductDto.isEmpty()) {
+            return Optional.empty();
+        }
+
         return null;
     }
 
     @Override
-    public boolean deletePosition(Integer idModel) {
-        return false;
+    public void deletePosition(Integer idModel) {
+        productRepository.deleteById(Long.valueOf(idModel));
     }
 
     private Page<Product> formingPageFromIfNameProductNullOrNotNull(String nameProduct, Pageable pageable, ColorEquipment colorEquipment,
