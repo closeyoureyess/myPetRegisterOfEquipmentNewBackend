@@ -26,20 +26,12 @@ public class ModelView extends BaseAppLayout {
         Grid<ProductDto> gridProductDto = new Grid<>(ProductDto.class);
         HorizontalLayout horizontalLayout = new HorizontalLayout();
         VerticalLayout verticalLayout = new VerticalLayout();
-        ProductDto productDto = ProductDto.builder().id(Long.valueOf(ONE_FLAG)).nameProduct(TEST_VALUE_STRING).nameTypeTechnic(FRIDGE)
-                .manufacturerCountry(TEST_VALUE_STRING).manufacturerCompany(TEST_VALUE_STRING)
-                .isOrderOnline(TEST_VALUE_BOOLEAN).isPossibilityInstallments(TEST_VALUE_BOOLEAN)
-                .attributesDto(new AttributesDto(Long.valueOf(ONE_FLAG), null, null,
-                        null, null, null, null, null,
-                        null, null, null, null,
-                        null, null, null, null, null,
-                        null)).build();
-
+        ProductDto productDto = createProductDtoWithBuilder();
         gridProductDto.removeAllColumns();
         List<String> stringList = getFieldsNameFromCustomClass(productDto);
         for (String s : stringList) {
             if (s.equals(ATTRIBUTESDTO_FIELD_NAME)) {
-                gridProductDto.addColumn(s).setHeader(NAME_DEVICE_FIELD_NAME)/*.setFlexGrow(THREE_NUMBER)*/;
+                gridProductDto.addColumn(s).setHeader(NAME_DEVICE_FIELD_NAME);
             } else {
                 gridProductDto.addColumn(s);
             }
@@ -55,6 +47,17 @@ public class ModelView extends BaseAppLayout {
         verticalLayout.add(horizontalLayout, gridProductDto);
 
         setContent(verticalLayout);
+    }
+
+    private ProductDto createProductDtoWithBuilder() {
+        return ProductDto.builder().id(Long.valueOf(ONE_FLAG)).nameProduct(TEST_VALUE_STRING).nameTypeTechnic(FRIDGE)
+                .manufacturerCountry(TEST_VALUE_STRING).manufacturerCompany(TEST_VALUE_STRING)
+                .isOrderOnline(TEST_VALUE_BOOLEAN).isPossibilityInstallments(TEST_VALUE_BOOLEAN)
+                .attributesDto(new AttributesDto(Long.valueOf(ONE_FLAG), null, null,
+                        null, null, null, null, null,
+                        null, null, null, null,
+                        null, null, null, null, null,
+                        null)).build();
     }
 
     private List<String> getFieldsNameFromCustomClass(ProductDto productDto) {
