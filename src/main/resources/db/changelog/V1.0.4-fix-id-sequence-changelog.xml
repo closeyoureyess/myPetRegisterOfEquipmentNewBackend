@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <!-- ChangeSet 15: Обновление последовательности для attributes_products.id -->
+    <changeSet id="15" author="Sirik">
+        <comment>Обновление последовательности для attributes_products.id</comment>
+        <sql>
+            SELECT setval(pg_get_serial_sequence('attributes_products', 'id'), (SELECT MAX(id) FROM attributes_products));
+        </sql>
+        <rollback>
+            <!-- Откат не требуется -->
+        </rollback>
+    </changeSet>
+
+    <!-- ChangeSet 16: Обновление последовательности для products.id -->
+    <changeSet id="16" author="Sirik">
+        <comment>Обновление последовательности для products.id</comment>
+        <sql>
+            SELECT setval(pg_get_serial_sequence('products', 'id'), (SELECT MAX(id) FROM products));
+        </sql>
+        <rollback>
+            <!-- Откат не требуется -->
+        </rollback>
+    </changeSet>
+
+    <!-- ChangeSet 17: Изменение типа столбца 'id' на 'bigint' -->
+    <changeSet id="17" author="Sirik">
+        <comment>Изменение типа столбца 'id' на 'bigint'</comment>
+        <modifyDataType tableName="attributes_products" columnName="id" newDataType="BIGINT"/>
+        <modifyDataType tableName="products" columnName="id" newDataType="BIGINT"/>
+        <rollback>
+            <modifyDataType tableName="attributes_products" columnName="id" newDataType="INT"/>
+            <modifyDataType tableName="products" columnName="id" newDataType="INT"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

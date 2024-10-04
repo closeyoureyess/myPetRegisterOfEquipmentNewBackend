@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <!-- ChangeSet 12: Переименование таблицы Products в products -->
+    <changeSet id="12" author="Sirik">
+        <renameTable oldTableName="Products" newTableName="products"/>
+        <rollback>
+            <renameTable oldTableName="products" newTableName="Products"/>
+        </rollback>
+    </changeSet>
+
+    <!-- ChangeSet 13: Переименование таблицы AttributesProducts в attributes_products -->
+    <changeSet id="13" author="Sirik">
+        <renameTable oldTableName="AttributesProducts" newTableName="attributes_products"/>
+        <rollback>
+            <renameTable oldTableName="attributes_products" newTableName="AttributesProducts"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

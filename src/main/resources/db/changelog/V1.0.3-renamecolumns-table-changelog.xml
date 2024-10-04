@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="14" author="Sirik">
+        <!-- Изменение типа столбца 'color' с 'color_enum' на 'varchar(50)' -->
+        <modifyDataType tableName="attributes_products" columnName="color" newDataType="varchar"/>
+        <rollback>
+            <!-- Возврат типа столбца 'color' к 'color_enum' -->
+            <modifyDataType tableName="attributes_products" columnName="color" newDataType="color_enum"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

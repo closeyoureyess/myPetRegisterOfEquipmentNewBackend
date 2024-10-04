@@ -7,7 +7,7 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Table(name = "AttributesProducts")
+@Table(name = "attributes_products")
 @Getter
 @Setter
 @Builder

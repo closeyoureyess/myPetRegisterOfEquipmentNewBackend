@@ -88,9 +88,10 @@ public class ProductServiceImpl implements ProductService {
     public Optional<ProductDto> changePosition(ProductDto productDto) {
         Optional<Product> optionalProductDto = productRepository.findById(productDto.getId());
         if (optionalProductDto.isPresent()) {
+            Product afterCompareProduct = productMapper.compareProductAndDto(productDto, optionalProductDto.get());
             return Optional.of(
                     productMapper.convertProductToDto(
-                            optionalProductDto.get()
+                            productRepository.save(afterCompareProduct)
                     )
             );
         }

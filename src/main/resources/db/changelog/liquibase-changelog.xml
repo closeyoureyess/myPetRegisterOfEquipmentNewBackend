@@ -6,5 +6,9 @@
 
     <include file="V1.0.0-create-table-changelog.xml" relativeToChangelogFile="true"/>
     <include file="V1.0.1-testdata-table-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="V1.0.2-renametable-table-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="V1.0.3-renamecolumns-table-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="V1.0.4-fix-id-sequence-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="V1.0.5-renameenum-changelog.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
