@@ -10,5 +10,6 @@ public interface AttributesMapper {
 
     Attributes convertDtoToAttributes(@NotNull AttributesDto attributesDto);
     AttributesDto convertAttributesToDto(@NotNull Attributes attributes);
+    Attributes compareAttributesAndDto(@NotNull Attributes attributes, @NotNull AttributesDto attributesDto);
 
 }

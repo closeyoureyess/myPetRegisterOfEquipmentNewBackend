@@ -18,7 +18,7 @@ import static com.petregisterofequipmentnew.back.others.ConstantsClass.*;
 import static com.petregisterofequipmentnew.back.others.TypeEquipmentEnum.FRIDGE;
 import static com.petregisterofequipmentnew.front.ConstantsFront.*;
 
-@Route
+@Route("app/model")
 public class ModelView extends BaseAppLayout {
 
     public ModelView() {

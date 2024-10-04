@@ -7,6 +7,8 @@ import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class ProductPredicateImpl implements ProductPredicate {
 
@@ -77,7 +79,7 @@ public class ProductPredicateImpl implements ProductPredicate {
 
     @SuppressWarnings("unchecked")
     private <T> T buildIndividualAttributesCountsDoor(T booleanExpression, QProduct product, Integer countsDoor,
-                                                      String typeCompressor, int counter) {
+                                                               String typeCompressor, int counter) {
         if (countsDoor != null) {
             if (booleanExpression instanceof BooleanExpression) {
                 booleanExpression = (T) ((BooleanExpression) booleanExpression).and(product.attributes.countsDoor.eq(countsDoor));

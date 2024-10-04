@@ -53,9 +53,8 @@ public class ProductServiceImpl implements ProductService {
                 productForSaveDB.setAttributes(optionalContainerObject.get().getObjectOne());
             }
         }
-        return productMapper.convertProductToDto(
-                productRepository.save(productForSaveDB)
-        );
+        Product product = productRepository.save(productForSaveDB);
+        return productMapper.convertProductToDto(product);
     }
 
     @Override
@@ -88,11 +87,14 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Optional<ProductDto> changePosition(ProductDto productDto) {
         Optional<Product> optionalProductDto = productRepository.findById(productDto.getId());
-        if (optionalProductDto.isEmpty()) {
-            return Optional.empty();
+        if (optionalProductDto.isPresent()) {
+            return Optional.of(
+                    productMapper.convertProductToDto(
+                            optionalProductDto.get()
+                    )
+            );
         }
-
-        return null;
+        return Optional.empty();
     }
 
     @Override

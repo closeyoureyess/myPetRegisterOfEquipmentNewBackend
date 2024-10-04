@@ -77,7 +77,6 @@ public class ProductMapperImpl implements ProductMapper {
     }
 
 
-
     @Override
     public List<Product> transferProductDtoListToProduct(List<ProductDto> productDtoList) {
         List<Product> productList = new LinkedList<>();
@@ -116,23 +115,50 @@ public class ProductMapperImpl implements ProductMapper {
     }
 
     @Override
-    public ProductDto compareProductAndDto(ProductDto productDto, Product product) {
-        if (!productDto.getNameProduct().equals(product.getNameProduct()))
+    public Product compareProductAndDto(ProductDto productDto, Product product) {
+        if (productDto.getId() != null && product.getId() == null)
+            product.setId(productDto.getId());
+        else if (productDto.getId() != null && !productDto.getId().equals(product.getId()))
+            product.setId(productDto.getId());
+
+        if (productDto.getNameProduct() != null && product.getNameProduct() == null)
             product.setNameProduct(productDto.getNameProduct());
-        if (!productDto.getNameTypeTechnic().equals(product.getNameTypeTechnic()))
+        else if (productDto.getNameProduct() != null && !productDto.getNameProduct().equals(product.getNameProduct()))
+            product.setNameProduct(productDto.getNameProduct());
+
+        if (productDto.getNameTypeTechnic() != null && product.getNameTypeTechnic() == null)
             product.setNameTypeTechnic(productDto.getNameTypeTechnic());
-        if (!productDto.getManufacturerCountry().equals(product.getManufacturerCountry()))
+        else if (productDto.getNameTypeTechnic() != null && !productDto.getNameTypeTechnic().equals(product.getNameTypeTechnic()))
+            product.setNameTypeTechnic(productDto.getNameTypeTechnic());
+
+        if (productDto.getManufacturerCountry() != null && product.getManufacturerCountry() == null)
             product.setManufacturerCountry(productDto.getManufacturerCountry());
-        if (!productDto.getManufacturerCompany().equals(product.getManufacturerCompany()))
+        else if (productDto.getManufacturerCountry() != null && !productDto.getManufacturerCountry().equals(product.getManufacturerCountry()))
+            product.setManufacturerCountry(productDto.getManufacturerCountry());
+
+        if (productDto.getManufacturerCompany() != null && product.getManufacturerCompany() == null)
             product.setManufacturerCompany(productDto.getManufacturerCompany());
+        else if (productDto.getManufacturerCompany() != null && !productDto.getManufacturerCompany().equals(product.getManufacturerCompany()))
+            product.setManufacturerCompany(productDto.getManufacturerCompany());
+
         if (productDto.getIsOrderOnline() != null)
             product.setIsOrderOnline(productDto.getIsOrderOnline());
+
         if (productDto.getIsPossibilityInstallments() != null)
             product.setIsPossibilityInstallments(productDto.getIsPossibilityInstallments());
-        if (productDto.getAttributesDto() != null) {
 
+        if (productDto.getAttributesDto() != null && product.getAttributes() != null) {
+            product.setAttributes(
+                    attributesMapper.compareAttributesAndDto(
+                            product.getAttributes(), productDto.getAttributesDto()
+                    )
+            );
+        } else if (productDto.getAttributesDto() != null && product.getAttributes() == null) {
+            product.setAttributes(
+                    attributesMapper.convertDtoToAttributes(productDto.getAttributesDto())
+            );
         }
-        return null;
+        return product;
     }
 
 

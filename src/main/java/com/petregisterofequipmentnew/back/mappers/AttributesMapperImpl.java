@@ -139,4 +139,103 @@ public class AttributesMapperImpl implements AttributesMapper {
         return attributesDto;
     }
 
+    @Override
+    public Attributes compareAttributesAndDto(Attributes attributes, AttributesDto attributesDto) {
+        if (attributesDto.getId() != null && attributes.getId() == null) {
+            attributes.setId(attributesDto.getId());
+        } else if (attributesDto.getId() != null && !attributesDto.getId().equals(attributes.getId())) {
+            attributes.setId(attributesDto.getId());
+        }
+
+        if (attributesDto.getNameDevice() != null && attributes.getNameDevice() == null) {
+            attributes.setNameDevice(attributesDto.getNameDevice());
+        } else if (attributesDto.getNameDevice() != null && !attributesDto.getNameDevice().equals(attributes.getNameDevice())) {
+            attributes.setNameDevice(attributesDto.getNameDevice());
+        }
+
+        if (attributesDto.getSerialNumber() != null && attributes.getSerialNumber() == null) {
+            attributes.setSerialNumber(attributesDto.getSerialNumber());
+        } else if (attributesDto.getSerialNumber() != null && !attributesDto.getSerialNumber().equals(attributes.getSerialNumber())) {
+            attributes.setSerialNumber(attributesDto.getSerialNumber());
+        }
+
+        if (attributesDto.getColor() != null && attributes.getColor() == null) {
+            attributes.setColor(attributesDto.getColor());
+        } else if (attributesDto.getColor() != null && !attributesDto.getColor().equals(attributes.getColor())) {
+            attributes.setColor(attributesDto.getColor());
+        }
+
+        if (attributesDto.getSize() != null && attributes.getSize() == null) {
+            attributes.setSize(attributesDto.getSize());
+        } else if (attributesDto.getSize() != null && !attributesDto.getSize().equals(attributes.getSize())) {
+            attributes.setSize(attributesDto.getSize());
+        }
+
+        if (attributesDto.getPrice() != null && attributes.getPrice() == null) {
+            attributes.setPrice(attributesDto.getPrice());
+        } else if (attributesDto.getPrice() != null && !attributesDto.getPrice().equals(attributes.getPrice())) {
+            attributes.setPrice(attributesDto.getPrice());
+        }
+
+        if (attributesDto.getIsAvailabilityProducts() != null && attributes.getIsAvailabilityProducts() == null) {
+            attributes.setIsAvailabilityProducts(attributesDto.getIsAvailabilityProducts());
+        } else if (attributesDto.getIsAvailabilityProducts() != null && !attributesDto.getIsAvailabilityProducts().equals(attributes.getIsAvailabilityProducts())) {
+            attributes.setIsAvailabilityProducts(attributesDto.getIsAvailabilityProducts());
+        }
+
+        if (attributesDto.getCountsDoor() != null && attributes.getCountsDoor() == null) {
+            attributes.setCountsDoor(attributesDto.getCountsDoor());
+        } else if (attributesDto.getCountsDoor() != null && !attributesDto.getCountsDoor().equals(attributes.getCountsDoor())) {
+            attributes.setCountsDoor(attributesDto.getCountsDoor());
+        }
+
+        if (attributesDto.getTypeCompressor() != null && attributes.getTypeCompressor() == null) {
+            attributes.setTypeCompressor(attributesDto.getTypeCompressor());
+        } else if (attributesDto.getTypeCompressor() != null && !attributesDto.getTypeCompressor().equals(attributes.getTypeCompressor())) {
+            attributes.setTypeCompressor(attributesDto.getTypeCompressor());
+        }
+
+        if (attributesDto.getSizeDustCollect() != null && attributes.getSizeDustCollect() == null) {
+            attributes.setSizeDustCollect(attributesDto.getSizeDustCollect());
+        } else if (attributesDto.getSizeDustCollect() != null && !attributesDto.getSizeDustCollect().equals(attributes.getSizeDustCollect())) {
+            attributes.setSizeDustCollect(attributesDto.getSizeDustCollect());
+        }
+        if (attributesDto.getCountsRegime() != null && attributes.getCountsRegime() == null) {
+            attributes.setCountsRegime(attributesDto.getCountsRegime());
+        } else if (attributesDto.getCountsRegime() != null && !attributesDto.getCountsRegime().equals(attributes.getCountsRegime())) {
+            attributes.setCountsRegime(attributesDto.getCountsRegime());
+        }
+
+        if (attributesDto.getTypeProcessor() != null && attributes.getTypeProcessor() == null) {
+            attributes.setTypeProcessor(attributesDto.getTypeProcessor());
+        } else if (attributesDto.getTypeProcessor() != null && !attributesDto.getTypeProcessor().equals(attributes.getTypeProcessor())) {
+            attributes.setTypeProcessor(attributesDto.getTypeProcessor());
+        }
+
+        if (attributesDto.getCategory() != null && attributes.getCategory() == null) {
+            attributes.setCategory(attributesDto.getCategory());
+        } else if (attributesDto.getCategory() != null && !attributesDto.getCategory().equals(attributes.getCategory())) {
+            attributes.setCategory(attributesDto.getCategory());
+        }
+
+        if (attributesDto.getMemoryPhone() != null && attributes.getMemoryPhone() == null) {
+            attributes.setMemoryPhone(attributesDto.getMemoryPhone());
+        } else if (attributesDto.getMemoryPhone() != null && !attributesDto.getMemoryPhone().equals(attributes.getMemoryPhone())) {
+            attributes.setMemoryPhone(attributesDto.getMemoryPhone());
+        }
+
+        if (attributesDto.getCountsSnaps() != null && attributes.getCountsSnaps() == null) {
+            attributes.setCountsSnaps(attributesDto.getCountsSnaps());
+        } else if (attributesDto.getCountsSnaps() != null && !attributesDto.getCountsSnaps().equals(attributes.getCountsSnaps())) {
+            attributes.setCountsSnaps(attributesDto.getCountsSnaps());
+        }
+
+        if (attributesDto.getTechnology() != null && attributes.getTechnology() == null) {
+            attributes.setTechnology(attributesDto.getTechnology());
+        } else if (attributesDto.getTechnology() != null && !attributesDto.getTechnology().equals(attributes.getTechnology())) {
+            attributes.setTechnology(attributesDto.getTechnology());
+        }
+        return attributes;
+    }
+
 }
