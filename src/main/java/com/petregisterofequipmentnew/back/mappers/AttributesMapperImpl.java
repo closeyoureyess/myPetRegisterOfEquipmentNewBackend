@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class AttributesMapperImpl implements AttributesMapper {
 
@@ -236,6 +240,16 @@ public class AttributesMapperImpl implements AttributesMapper {
             attributes.setTechnology(attributesDto.getTechnology());
         }
         return attributes;
+    }
+
+    @Override
+    public List<Attributes> transferAttributesDtoListToAttributes(List<AttributesDto> attributesDtoList) {
+        return attributesDtoList.stream().map(this::convertDtoToAttributes).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AttributesDto> transferAttributesListToAttributesDto(List<Attributes> attributesList) {
+        return attributesList.stream().map(this::convertAttributesToDto).collect(Collectors.toList());
     }
 
 }

@@ -1,13 +1,16 @@
-package com.petregisterofequipmentnew.front;
+package com.petregisterofequipmentnew.front.productspage;
 
 import com.petregisterofequipmentnew.back.dtos.AttributesDto;
 import com.petregisterofequipmentnew.back.dtos.ProductDto;
+import com.petregisterofequipmentnew.front.BaseAppLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.spring.annotation.SpringComponent;
+import com.vaadin.flow.spring.annotation.UIScope;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -18,6 +21,8 @@ import static com.petregisterofequipmentnew.back.others.ConstantsClass.*;
 import static com.petregisterofequipmentnew.back.others.TypeEquipmentEnum.FRIDGE;
 import static com.petregisterofequipmentnew.front.ConstantsFront.*;
 
+@SpringComponent
+@UIScope
 @Route("app/model")
 public class ModelView extends BaseAppLayout {
 
@@ -27,6 +32,7 @@ public class ModelView extends BaseAppLayout {
         HorizontalLayout horizontalLayout = new HorizontalLayout();
         VerticalLayout verticalLayout = new VerticalLayout();
         ProductDto productDto = createProductDtoWithBuilder();
+
         gridProductDto.removeAllColumns();
         List<String> stringList = getFieldsNameFromCustomClass(productDto);
         for (String s : stringList) {
@@ -38,6 +44,7 @@ public class ModelView extends BaseAppLayout {
         }
 
         button.setText(CREATE_BUTTON);
+        button.addClickListener(event -> new CreateProductDialog());
 
         horizontalLayout.setWidthFull();
         horizontalLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.END);

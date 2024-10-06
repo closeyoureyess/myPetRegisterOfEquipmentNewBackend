@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import static com.petregisterofequipmentnew.back.others.ConstantsClass.TEST_VALUE_BOOLEAN;
+
 @RestController
 @RequestMapping("api/v1/product")
 @Validated
@@ -76,9 +78,9 @@ public class ProductContoller {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<ProductDto> deleteModel(@PathVariable @NotNull Long id) {
+    public ResponseEntity<Boolean> deleteModel(@PathVariable @NotNull Long id) {
         productService.deletePosition(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(TEST_VALUE_BOOLEAN);
     }
 
 }

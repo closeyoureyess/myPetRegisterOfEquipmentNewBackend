@@ -2,13 +2,15 @@ package com.petregisterofequipmentnew.back.services;
 
 import com.petregisterofequipmentnew.back.entities.Attributes;
 import com.petregisterofequipmentnew.back.mappers.AttributesMapper;
-import com.petregisterofequipmentnew.back.mappers.AttributesMapperImpl;
 import com.petregisterofequipmentnew.back.others.ContainerObject;
 import com.petregisterofequipmentnew.back.dtos.AttributesDto;
 import com.petregisterofequipmentnew.back.entities.repositories.AttributesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -40,5 +42,22 @@ public class AttributesServiceImpl implements AttributesService {
     @Override
     public void deleteAttributes(Long id) {
         attributesRepository.deleteById(id);
+    }
+
+    @Override
+    public List<AttributesDto> findProductByName(String nameAttributes, Integer offset, Integer limit) {
+        Page<Attributes> attributesPage = attributesRepository.findAllByNameDevice(nameAttributes, PageRequest.of(offset, limit));
+        return attributesMapper.transferAttributesListToAttributesDto(
+                attributesPage.stream().toList()
+        );
+    }
+
+    @Override
+    public Optional<Long> findCountAttributesByName(String nameAttributes) {
+        Optional<Long> countNameDevice = attributesRepository.countByNameDevice(nameAttributes);
+        if (countNameDevice.isPresent()) {
+            return countNameDevice;
+        }
+        return Optional.empty();
     }
 }
