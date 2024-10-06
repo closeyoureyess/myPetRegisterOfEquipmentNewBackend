@@ -9,6 +9,7 @@ import com.petregisterofequipmentnew.back.others.exeptions.MainException;
 import com.petregisterofequipmentnew.back.services.ProductService;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -75,7 +76,7 @@ public class ProductContoller {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<ProductDto> deleteModel(@PathVariable Integer id) {
+    public ResponseEntity<ProductDto> deleteModel(@PathVariable @NotNull Long id) {
         productService.deletePosition(id);
         return ResponseEntity.ok().build();
     }

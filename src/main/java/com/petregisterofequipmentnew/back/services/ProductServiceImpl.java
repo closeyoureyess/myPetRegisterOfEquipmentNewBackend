@@ -99,8 +99,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deletePosition(Integer idModel) {
-        productRepository.deleteById(Long.valueOf(idModel));
+    public void deletePosition(Long idModel) {
+        productRepository.deleteById(idModel);
     }
 
     private Page<Product> formingPageFromIfNameProductNullOrNotNull(String nameProduct, Pageable pageable, ColorEquipment colorEquipment,

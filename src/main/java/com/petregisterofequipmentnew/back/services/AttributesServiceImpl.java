@@ -1,6 +1,7 @@
 package com.petregisterofequipmentnew.back.services;
 
 import com.petregisterofequipmentnew.back.entities.Attributes;
+import com.petregisterofequipmentnew.back.mappers.AttributesMapper;
 import com.petregisterofequipmentnew.back.mappers.AttributesMapperImpl;
 import com.petregisterofequipmentnew.back.others.ContainerObject;
 import com.petregisterofequipmentnew.back.dtos.AttributesDto;
@@ -16,12 +17,14 @@ public class AttributesServiceImpl implements AttributesService {
     @Autowired
     private AttributesRepository attributesRepository;
     @Autowired
-    private AttributesMapperImpl attributesMapper;
+    private AttributesMapper attributesMapper;
 
     @Override
     public AttributesDto createAttributes(AttributesDto attributesDto) {
         Attributes attributes = attributesMapper.convertDtoToAttributes(attributesDto);
-        return attributesMapper.convertAttributesToDto(attributesRepository.save(attributes));
+        return attributesMapper.convertAttributesToDto(
+                attributesRepository.save(attributes)
+        );
     }
 
     @Override
@@ -34,5 +37,8 @@ public class AttributesServiceImpl implements AttributesService {
         return Optional.empty();
     }
 
-
+    @Override
+    public void deleteAttributes(Long id) {
+        attributesRepository.deleteById(id);
+    }
 }

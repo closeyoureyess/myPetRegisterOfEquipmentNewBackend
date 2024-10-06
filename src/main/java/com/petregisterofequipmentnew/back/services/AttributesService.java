@@ -14,4 +14,6 @@ public interface AttributesService {
     AttributesDto createAttributes(@NotNull AttributesDto attributesDto);
     Optional<ContainerObject<Attributes, AttributesDto>> verifyThatAttributesAlreadyExists(@NotNull AttributesDto attributesDto);
 
+    void deleteAttributes(@NotNull Long id);
+
 }

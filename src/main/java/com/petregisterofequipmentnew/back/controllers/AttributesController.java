@@ -25,4 +25,10 @@ public class AttributesController {
         return ResponseEntity.badRequest().build();
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<AttributesDto> deleteAttributes(@PathVariable @NotNull Long id) {
+        attributesService.deleteAttributes(id);
+        return ResponseEntity.ok().build();
+    }
+
 }

@@ -28,6 +28,6 @@ public interface ProductService {
             DirectionSort directionSort
     ) throws MainException;
     Optional<ProductDto> changePosition(ProductDto productDto);
-    void deletePosition(Integer idModel);
+    void deletePosition(Long idModel);
 
 }
