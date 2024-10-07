@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface AttributesRepository extends JpaRepository<Attributes, Long> {
 
     Page<Attributes> findAllByNameDevice(String nameDevice, Pageable pageable);
-    Optional<Long> countByNameDevice(String nameDevice);
+    Optional<Long> countByNameDeviceContainingIgnoreCase(String nameDevice);
     Page<Attributes> findAllByIdAndColor(Long id, ColorEquipment colorEquipment, Pageable pageable);
     // id + color - (name + type) -> id + color
     Page<Attributes> findAllByIdAndPriceOrderByPriceAsc(Long id, Integer price, Pageable pageable);

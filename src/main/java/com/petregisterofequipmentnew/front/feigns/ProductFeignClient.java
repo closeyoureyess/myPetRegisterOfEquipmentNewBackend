@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "productFeignClient", url = "http://localhost:8080/api/v1/product")
+@FeignClient(name = "productFeignClient")
 @Validated
 public interface ProductFeignClient {
 
-    @PostMapping("/create")
+    @PostMapping("api/v1/product/create")
     ResponseEntity<ProductDto> addModel(@RequestBody ProductDto productDto);
 
-    @GetMapping("/list-products")
+    @GetMapping("api/v1/product/list-products")
     ResponseEntity<List<ProductDto>> getModel(@RequestParam(value = "nameProduct", required = false) String nameProduct,
                                               @RequestParam(value = "typeOfEquipment", required = false) TypeEquipmentEnum typeEquipmentEnum,
                                               @RequestParam(value = "color", required = false) ColorEquipment colorEquipment,
@@ -45,10 +45,10 @@ public interface ProductFeignClient {
                                               @RequestParam(value = "sortOrder", defaultValue = "asc") DirectionSort directionSort
     );
 
-    @PutMapping("/update-product")
+    @PutMapping("api/v1/product/update-product")
     ResponseEntity<ProductDto> editModel(@RequestBody ProductDto productDto);
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("api/v1/product/delete/{id}")
     ResponseEntity<Boolean> deleteModel(@PathVariable @NotNull Long id);
 
 }

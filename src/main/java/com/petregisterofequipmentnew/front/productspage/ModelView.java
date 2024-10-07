@@ -9,8 +9,7 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.spring.annotation.SpringComponent;
-import com.vaadin.flow.spring.annotation.UIScope;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -21,10 +20,13 @@ import static com.petregisterofequipmentnew.back.others.ConstantsClass.*;
 import static com.petregisterofequipmentnew.back.others.TypeEquipmentEnum.FRIDGE;
 import static com.petregisterofequipmentnew.front.ConstantsFront.*;
 
-@SpringComponent
-@UIScope
-@Route("app/model")
+/*@SpringComponent
+@UIScope*/
+@Route("model")
 public class ModelView extends BaseAppLayout {
+
+    @Autowired
+    private CreateProductDialog createProductDialog;
 
     public ModelView() {
         Button button = new Button();
@@ -44,7 +46,7 @@ public class ModelView extends BaseAppLayout {
         }
 
         button.setText(CREATE_BUTTON);
-        button.addClickListener(event -> new CreateProductDialog());
+        button.addClickListener(event -> createProductDialog.open());
 
         horizontalLayout.setWidthFull();
         horizontalLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.END);

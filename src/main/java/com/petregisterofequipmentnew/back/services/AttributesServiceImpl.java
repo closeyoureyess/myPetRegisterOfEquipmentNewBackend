@@ -54,7 +54,7 @@ public class AttributesServiceImpl implements AttributesService {
 
     @Override
     public Optional<Long> findCountAttributesByName(String nameAttributes) {
-        Optional<Long> countNameDevice = attributesRepository.countByNameDevice(nameAttributes);
+        Optional<Long> countNameDevice = attributesRepository.countByNameDeviceContainingIgnoreCase(nameAttributes);
         if (countNameDevice.isPresent()) {
             return countNameDevice;
         }

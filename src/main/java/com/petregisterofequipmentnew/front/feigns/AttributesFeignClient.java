@@ -11,19 +11,20 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "attributesFeignClient", url = "http://localhost:8080/api/v1/attributes")
+@FeignClient(name = "attributesfeignclients")
 @Validated
 public interface AttributesFeignClient {
 
-    @PostMapping("/create")
+    @PostMapping("api/v1/attributes/create")
     ResponseEntity<AttributesDto> createAttributes(@RequestBody @NotNull AttributesDto attributesDto);
-    @GetMapping("/find-attributes-nameDevice/{nameDevice}")
+    @GetMapping("api/v1/attributes/find-attributes-nameDevice/{nameDevice}")
     ResponseEntity<List<AttributesDto>> findAttributesByName(@PathVariable String nameDevice,
                                                              @RequestParam(value = "offset", defaultValue = "0") @Min(0) Integer offset,
                                                              @RequestParam(value = "limit", defaultValue = "10") @Min(1) @Max(100) Integer limit);
-    @GetMapping("/find-count-attributes-nameDevice/{nameDevice}")
-    ResponseEntity<Long> findCountAttributesByName(@PathVariable String nameDevice);
-    @DeleteMapping("/delete/{id}")
+    @GetMapping("api/v1/attributes/find-count-attributes-nameDevice/{nameDevice}")
+    Long findCountAttributesByName(@PathVariable String nameDevice);
+    /*ResponseEntity<Long> findCountAttributesByName(@PathVariable String nameDevice);*/
+    @DeleteMapping("api/v1/attributes/delete/{id}")
     ResponseEntity<Boolean> deleteAttributes(@PathVariable @NotNull Long id);
 
 }
