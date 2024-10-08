@@ -20,8 +20,6 @@ import static com.petregisterofequipmentnew.back.others.ConstantsClass.*;
 import static com.petregisterofequipmentnew.back.others.TypeEquipmentEnum.FRIDGE;
 import static com.petregisterofequipmentnew.front.ConstantsFront.*;
 
-/*@SpringComponent
-@UIScope*/
 @Route("model")
 public class ModelView extends BaseAppLayout {
 
