@@ -1,27 +1,19 @@
 package com.petregisterofequipmentnew.front.productspage;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.petregisterofequipmentnew.back.dtos.AttributesDto;
 import com.petregisterofequipmentnew.back.services.AttributesService;
-import com.petregisterofequipmentnew.front.feigns.AttributesFeignClient;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Stream;
 
-import static com.petregisterofequipmentnew.back.others.ConstantsClass.TEST_VALUE_BOOLEAN;
-import static com.petregisterofequipmentnew.back.others.ConstantsClass.ZERO_FLAG;
-import static com.petregisterofequipmentnew.front.ConstantsFront.CHOOSE_ELEMENT;
 import static com.petregisterofequipmentnew.front.ConstantsFront.EMPTY_SPACE;
 
 @SpringComponent
