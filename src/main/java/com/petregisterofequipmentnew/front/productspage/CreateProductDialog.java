@@ -2,6 +2,7 @@ package com.petregisterofequipmentnew.front.productspage;
 
 import com.petregisterofequipmentnew.back.dtos.AttributesDto;
 import com.petregisterofequipmentnew.back.services.AttributesService;
+import com.petregisterofequipmentnew.front.feigns.AttributesEndpoints;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dialog.Dialog;
@@ -9,9 +10,14 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.client.RestClient;
+import org.springframework.web.client.support.RestClientAdapter;
+import org.springframework.web.service.invoker.HttpExchangeAdapter;
+import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import static com.petregisterofequipmentnew.front.ConstantsFront.EMPTY_SPACE;
@@ -20,8 +26,8 @@ import static com.petregisterofequipmentnew.front.ConstantsFront.EMPTY_SPACE;
 @UIScope
 public class CreateProductDialog extends Dialog {
 
-    /*@Autowired
-    private AttributesFeignClient attributesFeignClient;*/
+    @Autowired
+    private RestClient restClient;
     @Autowired
     private AttributesService attributesService;
 
@@ -51,14 +57,31 @@ public class CreateProductDialog extends Dialog {
     }
 
     private Stream<String> filterUserInputInCombox(String queryFilter, Integer offset, Integer limit) {
-        List<AttributesDto> attributesDtoList = attributesService.findProductByName(queryFilter, offset, limit);
+        RestClientAdapter restClientAdapter = RestClientAdapter.create(restClient);
+        AttributesEndpoints attributesEndpoints = HttpServiceProxyFactory
+                .builderFor(restClientAdapter)
+                .build()
+                .createClient(AttributesEndpoints.class);
+
         List<String> attributesList = new LinkedList<>();
-        if (attributesDtoList != null) {
+        if (!attributesDtoList.isEmpty()) {
             for (AttributesDto attributesDto : attributesDtoList)
                 attributesList.add(attributesDto.getNameDevice());
         }
         return attributesList.stream();
     }
+
+    /*private Stream<String> filterUserInputInCombox(String queryFilter, Integer offset, Integer limit) {
+        List<AttributesDto> attributesDtoList = Optional.ofNullable(
+                attributesEndpoints.findAttributesByName(queryFilter, offset, limit))
+                .map(request -> request.getBody()).orElse(new LinkedList<>());
+        List<String> attributesList = new LinkedList<>();
+        if (!attributesDtoList.isEmpty()) {
+            for (AttributesDto attributesDto : attributesDtoList)
+                attributesList.add(attributesDto.getNameDevice());
+        }
+        return attributesList.stream();
+    }*/
 
     /*private ComboBox<String> createNewCombox() {
         ComboBox<String> comboBox = new ComboBox<>(CHOOSE_ELEMENT);

@@ -1,17 +1,16 @@
 package com.petregisterofequipmentnew.front;
 
-import com.petregisterofequipmentnew.back.dtos.ProductDto;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.grid.Grid;
-import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
+import org.springframework.web.client.RestClient;
 @Configuration
 public class ObjectsConfig {
 
     @Bean
-    public Button builderObject(){
-        return new Button();
+    public RestClient builderObject(@Value("${api.base.url}") String baseUrl){
+        return RestClient.builder()
+                .baseUrl(baseUrl)
+                .build();
     }
 }

@@ -1,4 +1,4 @@
-package com.petregisterofequipmentnew.front.feigns;
+/*package com.petregisterofequipmentnew.front.feigns;
 
 import com.petregisterofequipmentnew.back.dtos.AttributesDto;
 import jakarta.validation.constraints.Max;
@@ -23,8 +23,8 @@ public interface AttributesFeignClient {
                                                              @RequestParam(value = "limit", defaultValue = "10") @Min(1) @Max(100) Integer limit);
     @GetMapping("api/v1/attributes/find-count-attributes-nameDevice/{nameDevice}")
     Long findCountAttributesByName(@PathVariable String nameDevice);
-    /*ResponseEntity<Long> findCountAttributesByName(@PathVariable String nameDevice);*/
+    *//*ResponseEntity<Long> findCountAttributesByName(@PathVariable String nameDevice);*//*
     @DeleteMapping("api/v1/attributes/delete/{id}")
     ResponseEntity<Boolean> deleteAttributes(@PathVariable @NotNull Long id);
 
-}
+}*/
