@@ -1,3 +1,4 @@
+/*
 package com.petregisterofequipmentnew.front;
 
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -20,3 +21,4 @@ public class BaseAppLayout extends AppLayout {
 
     }
 }
+*/

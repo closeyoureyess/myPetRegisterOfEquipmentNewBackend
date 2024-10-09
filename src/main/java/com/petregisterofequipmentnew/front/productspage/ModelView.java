@@ -1,3 +1,4 @@
+/*
 package com.petregisterofequipmentnew.front.productspage;
 
 import com.petregisterofequipmentnew.back.dtos.AttributesDto;
@@ -77,3 +78,4 @@ public class ModelView extends BaseAppLayout {
         return stringList;
     }
 }
+*/

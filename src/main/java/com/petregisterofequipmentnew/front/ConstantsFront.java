@@ -1,3 +1,4 @@
+/*
 package com.petregisterofequipmentnew.front;
 
 public class ConstantsFront {
@@ -11,3 +12,4 @@ public class ConstantsFront {
     public static final String EMPTY_SPACE = "";
 
 }
+*/

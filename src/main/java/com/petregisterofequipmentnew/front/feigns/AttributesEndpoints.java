@@ -1,3 +1,4 @@
+/*
 package com.petregisterofequipmentnew.front.feigns;
 
 import com.petregisterofequipmentnew.back.dtos.AttributesDto;
@@ -20,3 +21,4 @@ public interface AttributesEndpoints {
                                                              @RequestParam(value = "limit", defaultValue = "10") @Min(1) @Max(100) Integer limit);
 
 }
+*/

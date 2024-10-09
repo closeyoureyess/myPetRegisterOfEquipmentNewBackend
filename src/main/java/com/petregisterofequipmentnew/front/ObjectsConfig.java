@@ -1,3 +1,4 @@
+/*
 package com.petregisterofequipmentnew.front;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -14,3 +15,4 @@ public class ObjectsConfig {
                 .build();
     }
 }
+*/

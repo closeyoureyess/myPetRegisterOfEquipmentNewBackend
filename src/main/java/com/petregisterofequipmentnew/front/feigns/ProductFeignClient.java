@@ -1,4 +1,4 @@
-package com.petregisterofequipmentnew.front.feigns;
+/*package com.petregisterofequipmentnew.front.feigns;
 
 import com.petregisterofequipmentnew.back.dtos.ProductDto;
 import com.petregisterofequipmentnew.back.others.ColorEquipment;
@@ -51,4 +51,4 @@ public interface ProductFeignClient {
     @DeleteMapping("api/v1/product/delete/{id}")
     ResponseEntity<Boolean> deleteModel(@PathVariable @NotNull Long id);
 
-}
+}*/

@@ -1,4 +1,4 @@
-package com.petregisterofequipmentnew.front.productspage;
+/*package com.petregisterofequipmentnew.front.productspage;
 
 import com.petregisterofequipmentnew.back.dtos.AttributesDto;
 import com.petregisterofequipmentnew.back.services.AttributesService;
@@ -71,7 +71,7 @@ public class CreateProductDialog extends Dialog {
                 attributesList.add(attributesDto.getNameDevice());
         }
         return attributesList.stream();
-    }
+    }*/
 
     /*private Stream<String> filterUserInputInCombox(String queryFilter, Integer offset, Integer limit) {
         List<AttributesDto> attributesDtoList = Optional.ofNullable(
@@ -124,4 +124,4 @@ public class CreateProductDialog extends Dialog {
         return Optional.ofNullable(attributesService.findCountAttributesByName(filter))
                 .map(request -> Integer.parseInt(request.get().toString())).orElse(ZERO_FLAG);
     }*/
-}
+/*}*/
