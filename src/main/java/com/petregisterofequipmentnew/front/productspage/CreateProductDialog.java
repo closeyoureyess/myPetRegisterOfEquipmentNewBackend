@@ -62,7 +62,9 @@ public class CreateProductDialog extends Dialog {
                 .builderFor(restClientAdapter)
                 .build()
                 .createClient(AttributesEndpoints.class);
-
+        List<AttributesDto> attributesDtoList = Optional.ofNullable(
+                attributesEndpoints.findAttributesByName(queryFilter, offset, limit))
+                .map(request -> request.getBody()).orElse(new LinkedList<>());
         List<String> attributesList = new LinkedList<>();
         if (!attributesDtoList.isEmpty()) {
             for (AttributesDto attributesDto : attributesDtoList)
