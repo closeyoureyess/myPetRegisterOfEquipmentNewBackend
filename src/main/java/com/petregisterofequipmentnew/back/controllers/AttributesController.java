@@ -5,6 +5,7 @@ import com.petregisterofequipmentnew.back.services.AttributesService;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -18,6 +19,7 @@ import static com.petregisterofequipmentnew.back.others.ConstantsClass.TEST_VALU
 @RestController
 @RequestMapping("api/v1/attributes")
 @Validated
+@Slf4j
 public class AttributesController {
 
     @Autowired
@@ -36,6 +38,7 @@ public class AttributesController {
     public ResponseEntity<List<AttributesDto>> findAttributesByName(@PathVariable String nameDevice,
                                                                     @RequestParam(value = "offset", defaultValue = "0") @Min(0) Integer offset,
                                                                     @RequestParam(value = "limit", defaultValue = "10") @Min(1) @Max(100) Integer limit) {
+        log.info("GET findAttributesByName" + nameDevice);
         List<AttributesDto> attributesDtoList = attributesService.findProductByName(nameDevice, offset, limit);
         if (attributesDtoList != null) {
             return ResponseEntity.ok(attributesDtoList);
