@@ -15,7 +15,7 @@ public interface AttributesService {
     AttributesDto createAttributes(@NotNull AttributesDto attributesDto);
     Optional<ContainerObject<Attributes, AttributesDto>> verifyThatAttributesAlreadyExists(@NotNull AttributesDto attributesDto);
     void deleteAttributes(@NotNull Long id);
-    List<AttributesDto> findProductByName(@NotNull String nameAttributes, Integer offset, Integer limit);
+    Optional<List<AttributesDto>> findProductByName(@NotNull String nameAttributes, Integer offset, Integer limit);
     Optional<Long> findCountAttributesByName(@NotNull String nameAttributes);
 
 }

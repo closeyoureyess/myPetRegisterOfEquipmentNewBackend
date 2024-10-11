@@ -47,11 +47,15 @@ public class AttributesServiceImpl implements AttributesService {
 
     @Override
     @Transactional
-    public List<AttributesDto> findProductByName(String nameAttributes, Integer offset, Integer limit) {
-        Page<Attributes> attributesPage = attributesRepository.findAllByNameDeviceContainingIgnoreCase(nameAttributes, PageRequest.of(offset, limit));
-        return attributesMapper.transferAttributesListToAttributesDto(
-                attributesPage.stream().toList()
-        );
+    public Optional<List<AttributesDto>> findProductByName(String nameAttributes, Integer offset, Integer limit) {
+        Integer page = offset / limit;
+        Page<Attributes> attributesPage = attributesRepository.findAllByNameDeviceContainingIgnoreCase(nameAttributes, PageRequest.of(page, limit));
+        if (!attributesPage.isEmpty()) {
+            return Optional.of(attributesMapper.transferAttributesListToAttributesDto(
+                    attributesPage.stream().toList()
+            ));
+        }
+        return Optional.empty();
     }
 
     @Override

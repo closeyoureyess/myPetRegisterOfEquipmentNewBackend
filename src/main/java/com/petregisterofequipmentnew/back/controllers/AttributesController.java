@@ -37,11 +37,11 @@ public class AttributesController {
     @GetMapping("/find-attributes-nameDevice/{nameDevice}")
     public ResponseEntity<List<AttributesDto>> findAttributesByName(@PathVariable String nameDevice,
                                                                     @RequestParam(value = "offset", defaultValue = "0") @Min(0) Integer offset,
-                                                                    @RequestParam(value = "limit", defaultValue = "10") @Min(1) @Max(100) Integer limit) {
+                                                                    @RequestParam(value = "limit", defaultValue = "10") @Min(0) @Max(100) Integer limit) {
         log.info("GET findAttributesByName" + nameDevice);
-        List<AttributesDto> attributesDtoList = attributesService.findProductByName(nameDevice, offset, limit);
-        if (attributesDtoList != null) {
-            return ResponseEntity.ok(attributesDtoList);
+        Optional<List<AttributesDto>> attributesDtoList = attributesService.findProductByName(nameDevice, offset, limit);
+        if (attributesDtoList.isPresent()) {
+            return ResponseEntity.ok(attributesDtoList.get());
         }
         return ResponseEntity.notFound().build();
     }
