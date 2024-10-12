@@ -32,7 +32,7 @@ public class Attributes {
     private Integer price;
     @Column(name = "availability_model")
     private Boolean isAvailabilityProducts;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "attributes")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "attributes")
     private List<Product> productList;
 
     @Column(name = "numbercount_door")

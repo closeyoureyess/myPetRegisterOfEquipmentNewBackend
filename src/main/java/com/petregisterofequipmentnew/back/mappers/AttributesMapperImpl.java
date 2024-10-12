@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.petregisterofequipmentnew.back.others.ConstantsClass.ONE_FLAG;
 import static com.petregisterofequipmentnew.back.others.ConstantsClass.ZERO_FLAG;
 
 @Component

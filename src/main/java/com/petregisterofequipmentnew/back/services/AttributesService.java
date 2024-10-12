@@ -17,5 +17,6 @@ public interface AttributesService {
     void deleteAttributes(@NotNull Long id);
     Optional<List<AttributesDto>> findProductByName(@NotNull String nameAttributes, Integer offset, Integer limit, Integer serviceFlag);
     Optional<Long> findCountAttributesByName(@NotNull String nameAttributes);
+    void deleteAllAttributes();
 
 }

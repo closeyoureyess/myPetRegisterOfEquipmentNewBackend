@@ -63,4 +63,10 @@ public class AttributesController {
         return ResponseEntity.ok(TEST_VALUE_BOOLEAN);
     }
 
+    @DeleteMapping("/delete-all")
+    public ResponseEntity<Boolean> deleteAllAttributes() {
+        attributesService.deleteAllAttributes();
+        return ResponseEntity.ok(TEST_VALUE_BOOLEAN);
+    }
+
 }

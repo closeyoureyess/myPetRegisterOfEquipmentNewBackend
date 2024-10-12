@@ -67,4 +67,9 @@ public class AttributesServiceImpl implements AttributesService {
         }
         return Optional.empty();
     }
+
+    @Override
+    public void deleteAllAttributes() {
+        attributesRepository.deleteAll();
+    }
 }
