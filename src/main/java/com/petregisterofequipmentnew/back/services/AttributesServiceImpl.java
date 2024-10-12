@@ -54,7 +54,7 @@ public class AttributesServiceImpl implements AttributesService {
             List<AttributesDto> attributesDtoList = attributesMapper.transferAttributesListToAttributesDto(
                     attributesPage.stream().toList(), serviceFlag
             );
-            return Optional.of();
+            return Optional.of(attributesDtoList);
         }
         return Optional.empty();
     }
