@@ -10,6 +10,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.petregisterofequipmentnew.back.others.ConstantsClass.ONE_FLAG;
+import static com.petregisterofequipmentnew.back.others.ConstantsClass.ZERO_FLAG;
+
 @Component
 public class AttributesMapperImpl implements AttributesMapper {
 
@@ -44,7 +47,8 @@ public class AttributesMapperImpl implements AttributesMapper {
         if (attributesDto.getIsAvailabilityProducts() != null) {
             attributes.setIsAvailabilityProducts(attributesDto.getIsAvailabilityProducts());
         }
-        if (attributesDto.getProductDtoList() != null) {
+        if (attributesDto.getProductDtoList() != null && (attributesDto.getServiceFlag() == null || attributesDto.getServiceFlag().equals(ZERO_FLAG))
+        ) {
             attributes.setProductList(productMapper.transferProductDtoListToProduct(
                             attributesDto.getProductDtoList()
                     )
@@ -107,7 +111,7 @@ public class AttributesMapperImpl implements AttributesMapper {
         if (attributes.getIsAvailabilityProducts() != null) {
             attributesDto.setIsAvailabilityProducts(attributes.getIsAvailabilityProducts());
         }
-        if (attributes.getProductList() != null) {
+        if (attributes.getProductList() != null && (attributes.getServiceFlag() == null || attributes.getServiceFlag().equals(ZERO_FLAG))) {
             attributesDto.setProductDtoList(productMapper.transferProductListToProductDto(
                             attributes.getProductList()
                     )
