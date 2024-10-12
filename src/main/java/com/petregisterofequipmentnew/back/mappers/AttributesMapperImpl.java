@@ -247,13 +247,20 @@ public class AttributesMapperImpl implements AttributesMapper {
     }
 
     @Override
-    public List<Attributes> transferAttributesDtoListToAttributes(List<AttributesDto> attributesDtoList) {
-        return attributesDtoList.stream().map(this::convertDtoToAttributes).collect(Collectors.toList());
+    public List<Attributes> transferAttributesDtoListToAttributes(List<AttributesDto> attributesDtoList, Integer serviceFlag) {
+        return attributesDtoList.stream().map(entity -> {
+                    entity.setServiceFlag(serviceFlag);
+                    return convertDtoToAttributes(entity);
+                }
+        ).collect(Collectors.toList());
     }
 
     @Override
-    public List<AttributesDto> transferAttributesListToAttributesDto(List<Attributes> attributesList) {
-        return attributesList.stream().map(this::convertAttributesToDto).collect(Collectors.toList());
+    public List<AttributesDto> transferAttributesListToAttributesDto(List<Attributes> attributesList, Integer serviceFlag) {
+        return attributesList.stream().map(entity -> {
+            entity.setServiceFlag(serviceFlag);
+            return convertAttributesToDto(entity);
+        }).collect(Collectors.toList());
     }
 
 }

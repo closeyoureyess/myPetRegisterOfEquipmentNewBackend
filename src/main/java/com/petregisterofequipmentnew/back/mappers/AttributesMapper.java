@@ -15,7 +15,7 @@ public interface AttributesMapper {
     Attributes convertDtoToAttributes(@NotNull AttributesDto attributesDto);
     AttributesDto convertAttributesToDto(@NotNull Attributes attributes);
     Attributes compareAttributesAndDto(@NotNull Attributes attributes, @NotNull AttributesDto attributesDto);
-    List<Attributes> transferAttributesDtoListToAttributes(@NotNull List<AttributesDto> attributesDtoList);
-    List<AttributesDto> transferAttributesListToAttributesDto(@NotNull List<Attributes> attributesList);
+    List<Attributes> transferAttributesDtoListToAttributes(@NotNull List<AttributesDto> attributesDtoList, Integer serviceFlag);
+    List<AttributesDto> transferAttributesListToAttributesDto(@NotNull List<Attributes> attributesList, Integer serviceFlag);
 
 }

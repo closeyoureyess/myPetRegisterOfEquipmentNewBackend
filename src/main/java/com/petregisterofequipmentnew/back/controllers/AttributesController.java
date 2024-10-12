@@ -41,7 +41,7 @@ public class AttributesController {
                                                                     @RequestParam(value = "serviceFlag", defaultValue = "0", required = false) Integer serviceFlag
                                                                     ) {
         log.info("GET findAttributesByName" + nameDevice);
-        Optional<List<AttributesDto>> attributesDtoList = attributesService.findProductByName(nameDevice, offset, limit);
+        Optional<List<AttributesDto>> attributesDtoList = attributesService.findProductByName(nameDevice, offset, limit, serviceFlag);
         if (attributesDtoList.isPresent()) {
             return ResponseEntity.ok(attributesDtoList.get());
         }
